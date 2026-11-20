@@ -20,7 +20,7 @@ this project's implementation. Credit does not imply his review or endorsement.
 checked; the assembly has not yet been physically built or tested. The printed
 option is for fit prototyping. Aluminum is the intended later rib material.
 Reflector material and attachment, receiver retention and external supports
-remain to be designed or confirmed.
+remain to be designed.
 
 ![Aluminum backbone CAD preview](images/aluminum-backbone-preview.png)
 

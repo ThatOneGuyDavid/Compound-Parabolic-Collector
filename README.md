@@ -22,7 +22,9 @@ option is for fit prototyping. Aluminum is the intended later rib material.
 Reflector material and attachment, receiver retention and external supports
 remain to be designed.
 
-![Aluminum backbone CAD preview](images/aluminum-backbone-preview.png)
+[![Aluminum backbone model — open the interactive 3D viewer](images/aluminum-backbone-model.png)](https://thatoneguydavid.github.io/Compound-Parabolic-Collector/assembly-viewer.html)
+
+[Open and rotate the model online](https://thatoneguydavid.github.io/Compound-Parabolic-Collector/assembly-viewer.html).
 
 - Five stations, each made from two identical rib halves placed back-to-back
   in adjacent axial intervals, for ten halves total.

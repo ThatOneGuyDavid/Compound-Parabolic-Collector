@@ -19,13 +19,13 @@
     },
     {
       "path": "README.html",
-      "bytes": 13501,
-      "sha256": "e2caaf9f5e0d147533f97976487cefcd66a8ce15c4b9b242f1680fd1a153d864"
+      "bytes": 13765,
+      "sha256": "cb4885345a47a451de1303ff65aabc621593492a94fc7169c477afc922afbd31"
     },
     {
       "path": "README.md",
-      "bytes": 9506,
-      "sha256": "885338ab0cf17d98be71b5b4e452e14eb280c7f5d2481efbcab1c9170ff2c137"
+      "bytes": 9742,
+      "sha256": "ef512e6fd4c87c9095e919a9c329cf5e6f33bc5170d11778a71d66e4c8c101ea"
     },
     {
       "path": "assembly-viewer.html",
@@ -61,6 +61,11 @@
       "path": "docs/ray-trace.json",
       "bytes": 2317,
       "sha256": "74d7c8ebb6cd004ed5eb005c0af669f0054beaf503eb6e54940d865330eccb72"
+    },
+    {
+      "path": "images/aluminum-backbone-model.png",
+      "bytes": 76734,
+      "sha256": "1e4bd466023ffcf6ece4f76e2f491415089b7ca8296b63b632698e819b193fbe"
     },
     {
       "path": "images/aluminum-backbone-preview.png",

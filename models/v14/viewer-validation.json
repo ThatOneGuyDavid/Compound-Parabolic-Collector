@@ -1,0 +1,16 @@
+{
+  "checks": [
+    "Offline WebGL renders five bolted sections, PVC spacers, all-thread, washers and lock nuts",
+    "Each section visibility toggles both halves and its clamping and slat attachment hardware",
+    "Matching R17 pad ends and three mounting holes on its horizontal centerline",
+    "Section inspection isolates a complete bolted pair with its 12 mm half offset",
+    "Slider zoom, fit reset, pointer rotation and shift-drag pan work",
+    "Connection detail shows imperial hardware and the staggered PVC spacer attachment",
+    "Forty slats grouped in four bays; one-bay view includes ten slats, two bolted stations and PVC spacers",
+    "Printed/aluminum switch uses fixed 12 mm / 1/8-inch ribs, preserves visibility and fixed pipe/rod/slat/spacer sizes, and updates matching downloads",
+    "Material switch updates modeled rib bolts and slat screws, matching BOM lengths and download targets",
+    "Aluminum halves have contrasting silver colors, adjacent nonoverlapping axial intervals and visible pair separation",
+    "Rods, PVC spacers and connector hardware have independent visibility; material switching preserves those choices"
+  ],
+  "browser_errors": []
+}

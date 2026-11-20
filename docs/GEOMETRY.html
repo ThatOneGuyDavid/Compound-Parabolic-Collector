@@ -1,0 +1,179 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Geometry and calculations — v14</title><style>
+body{font:17px/1.65 system-ui,sans-serif;color:#24333b;background:#f6f4ec;margin:0}
+main{max-width:1080px;margin:36px auto;padding:32px 48px;background:white;border-radius:12px}
+h1,h2,h3{line-height:1.25}h1{font-size:2.25rem}h2{margin-top:2.1em;padding-bottom:.3em;border-bottom:1px solid #dce2e4}
+a{color:#176c81}img{max-width:100%;height:auto;border:1px solid #e0e3e0;border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow:auto}
+td,th{border:1px solid #ccd6d7;padding:10px 13px;text-align:left}th{background:#edf4f3}
+tr:nth-child(even){background:#f8faf9}pre{padding:18px;background:#edf1f3;overflow:auto;border-radius:6px}
+code{font-size:.9em}nav{font-size:14px;color:#52656c;border-bottom:1px solid #dce2e4;padding-bottom:14px}
+@media(max-width:700px){main{margin:0;padding:20px}h1{font-size:1.8rem}}
+@media print{body{background:white}main{margin:0;padding:0}a{color:inherit}}
+</style></head><body><main><nav><a href="../README.html">GitHub project draft</a> · Local review copy</nav><h1>Geometry and calculations — v14</h1>
+<p>All dimensions below are millimeters unless marked otherwise. Angles in the
+equations are radians. Source code: <a href="../src/profile_geometry.py">profile_geometry.py</a>,
+<a href="../src/slat_geometry.py">slat_geometry.py</a>, and
+<a href="../src/hardware_geometry.py">hardware_geometry.py</a>.</p>
+<h2>Tubular CPC profile</h2>
+<p>The receiver center is <code>(0, 0)</code>. Positive <code>y</code> points toward the opening;
+positive <code>x</code> points toward the right reflector. Receiver radius
+<code>r = 33.401 / 2 = 16.7005</code>. Let <code>a</code> be the acceptance half-angle and <code>t</code> the
+curve parameter. The right-hand optical profile is:</p>
+<pre><code class="language-text">rho(t) = r*t                                      0 &lt;= t &lt;= pi/2 + a
+rho(t) = r*(t+a+pi/2-cos(t-a))/(1+sin(t-a))         pi/2+a &lt;= t &lt;= 3*pi/2-a
+
+x(t) = r*sin(t) - rho(t)*cos(t)
+y(t) = -r*cos(t) - rho(t)*sin(t)
+</code></pre>
+<p>The left reflector is <code>(-x(t), y(t))</code>. The first branch is an involute of the
+circular receiver; the second is the upper tubular CPC branch. The mechanical
+cradle and mounting pad are additions to this optical construction.</p>
+<p>The equations are documented in <a href="https://www.mdpi.com/1996-1073/9/10/795">Wang, Wang and Tang (2016), equations 1–2</a>
+and <a href="https://iieta.org/journals/ijht/paper/10.18280/ijht.35Sp0125">Casano, Fossa and Piva (2017), equation 1</a>.
+Those papers concern their own collectors; their performance results are not
+measurements of this backbone.</p>
+<h2>Solving the 12-inch arc constraint</h2>
+<p>The cradle bore radius is <code>r + 0.5 = 17.2005</code>. Its 8 mm wall gives an outer
+collar radius <code>Rc = 25.2005</code>. The reflector intersects that outer collar at:</p>
+<pre><code class="language-text">tA = sqrt((Rc/r)^2 - 1) = 1.1300357497
+t0 = pi/2 + a
+tB = 3*pi/2 - a
+</code></pre>
+<p>The specified 12″ / 304.8 mm arc is measured from A at <code>tA</code> to the tip B at
+<code>tB</code>. It excludes the ideal lower reflector between the receiver cusp and A.
+For the involute, speed is <code>r*t</code>; for the upper branch it is
+<code>rho(t)*sqrt(2/(1+sin(t-a)))</code>. Thus:</p>
+<pre><code class="language-text">S(a) = r/2 * (t0^2 - tA^2)
+       + integral[t0..tB] rho(t)*sqrt(2/(1+sin(t-a))) dt
+
+Solve S(a) = 304.8 mm
+</code></pre>
+<p>The generator uses 2,000-interval Simpson integration for the upper branch
+and 44 bisection iterations over 5°–85°. The solution is
+<code>a = 28.6297600599°</code>, so the nominal total transverse acceptance is about
+57.25952°. An independent 100,000-segment length calculation checks the arc
+against 304.8 mm to within 0.001 mm.</p>
+<p>At this solution, A is approximately <code>(7.0530, -24.1934)</code> and B is
+<code>(109.4989, 235.4418)</code>. The ideal opening width is <code>2*x(B) = 218.9978 mm</code>.
+The 12″ value is neither this width nor the straight A–B distance.</p>
+<p><img alt="Arc measurement definition" src="../sketches/reflector-arc-02.png" /></p>
+<h2>Ray-trace method and limits</h2>
+<p>The <a href="../rib.png">current drawing</a> uses the complete ideal optical skin from
+<code>t=0</code> through <code>tB</code>, sampled with 6,000 segments per side. The source is fixed
+at <code>(0, y(B)+5)</code>. Five directions are chosen between the low reference ray
+and <code>a-1°</code>. Each ray must hit the right reflector before the receiver, reflect
+once, then hit the receiver before any second wall intersection.</p>
+<p>For normalized incident direction <code>d</code> and a unit normal <code>n</code> from the hit
+segment's tangent:</p>
+<pre><code class="language-text">reflected = d - 2*(d dot n)*n
+receiver intersection: |hit + distance*reflected|^2 = r^2
+</code></pre>
+<p>The trace solves ray/segment intersections, takes the nearest valid hit,
+solves the receiver-circle quadratic, and checks for an intervening reflector.
+It verifies five distinct reflection points, one common source, unit reflected
+directions and receiver endpoints within 1e-6 mm radial error. Exact ray
+coordinates, input angles and checks are in <a href="ray-trace.json">ray-trace.json</a>.</p>
+<p>This finite-source fan is an illustrative diagnostic, not sunlight from five
+simultaneous solar positions. It does not prove full-aperture acceptance or
+collector efficiency. The lower ideal reflector around the receiver is part
+of the trace, while the rib/cradle are projected mechanical outlines. Material
+selection and construction of that lower reflector remain open. Mechanical
+shadows, imperfect reflectance, end losses and heat transfer are excluded.
+Historical ray tests on earlier profiles are not claimed as validation of
+the current acceptance range.</p>
+<h2>Ribs and slats</h2>
+<p>Each section contains two identical halves in adjacent axial intervals:
+<code>[z, z+h]</code> and <code>[z+h, z+2h]</code>. The left half is the same part rotated into
+place. The curved rib web is 22 mm; nominal outer edge rounding is 0.8 mm.
+The slat bend/tail projections fit within the rib with a conservative minimum
+back margin of approximately 1.961 mm after accounting for that rounding.</p>
+<p>Each half has three 9/32″ / 7.14375 mm structural holes at
+<code>(-15,-45)</code>, <code>(15,-45)</code> and <code>(45,-45)</code>. The paired inner holes clamp the ribs;
+the mirrored outer holes take the two all-thread rods. Five additional
+3/16″ / 4.7625 mm holes attach the slats. Their coordinates and local tangent
+directions are listed in each option's <code>slats.json</code>.</p>
+<p>The master slat is 19.05 mm wide and 1.5875 mm thick, with 1.5875 mm inner
+bend radii, 19.05 mm tab depth and rounded 90° end bends. Hole centers lie
+11.5 mm down the tabs. The formed axial span is 363 mm. The bottom support
+is located 45 mm along the reflector arc from A; upper stations follow the
+remaining interval, with the top support edge ending at B. All forty slats
+are rigid placements of one master; there are no row-specific slat designs.
+The flat blank length requires a bend allowance and a physical sample.</p>
+<h2>Longitudinal spacing</h2>
+<p>For rib thickness <code>h</code>, five stations and a fixed formed slat span of 363 mm:</p>
+<pre><code class="language-text">station pitch P = 363 + h
+rib span L = 4*P + 2*h
+receiver pipe length = 72*25.4 = 1828.8
+pipe overhang at each end = (1828.8 - L)/2
+PVC spacer length = P - h - 2*(25.4/16) = 359.825
+all-thread length = 61*25.4 = 1549.4
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Result</th>
+<th style="text-align: right;">Printed h=12</th>
+<th style="text-align: right;">Aluminum h=3.175</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P</td>
+<td style="text-align: right;">375</td>
+<td style="text-align: right;">366.175</td>
+</tr>
+<tr>
+<td>L</td>
+<td style="text-align: right;">1524</td>
+<td style="text-align: right;">1471.05</td>
+</tr>
+<tr>
+<td>Pipe overhang per end</td>
+<td style="text-align: right;">152.4</td>
+<td style="text-align: right;">178.875</td>
+</tr>
+<tr>
+<td>PVC spacer length</td>
+<td style="text-align: right;">359.825</td>
+<td style="text-align: right;">359.825</td>
+</tr>
+</tbody>
+</table>
+<p>The rod rows are axially staggered by one rib thickness to bear on their
+respective halves. Flat washers and lock nuts capture the rod ends. Washer
+thickness directly affects spacer cut length; measure actual hardware first.</p>
+<h2>Fastener stacks</h2>
+<p>Pair-bolt stack = <code>2*h + 2*1.5875 + 5.55625</code> including both ribs, both
+washers and the nut. Slat-screw stack = <code>h + tab_count*1.5875 + 2*0.8128 + 3.302</code>,
+where tab count is one at end stations and two at interior stations.</p>
+<table>
+<thead>
+<tr>
+<th>Joint</th>
+<th style="text-align: right;">Printed protrusion beyond nut</th>
+<th style="text-align: right;">Aluminum protrusion beyond nut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rib pair</td>
+<td style="text-align: right;">5.36875 mm</td>
+<td style="text-align: right;">3.96875 mm</td>
+</tr>
+<tr>
+<td>Slat, end station</td>
+<td style="text-align: right;">6.8849 mm</td>
+<td style="text-align: right;">6.1849 mm</td>
+</tr>
+<tr>
+<td>Slat, interior station</td>
+<td style="text-align: right;">5.2974 mm</td>
+<td style="text-align: right;">4.5974 mm</td>
+</tr>
+</tbody>
+</table>
+<p>The modeled ¼″-20 pitch is 1.27 mm and #8-32 pitch is 0.79375 mm. All selected
+fasteners pass the full modeled washer/nut stack with at least two pitches
+beyond the nut. Threads are represented as nominal cylinders, not helices;
+actual thread runout, hardware tolerances and purchased dimensions need
+confirmation before fabrication.</p></main></body></html>

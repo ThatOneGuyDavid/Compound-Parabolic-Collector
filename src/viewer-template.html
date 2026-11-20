@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CPC backbone preview</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#ece8db;color:#292c23;font:14px system-ui;overflow:hidden}
+main{display:flex;width:100vw;height:100vh;height:100dvh;min-height:0}aside{flex:0 0 290px;width:290px;padding:18px;overflow:auto;background:#f8f5eb;border-right:1px solid #d7d4c6}
+h1{font-size:20px;line-height:1.25;margin:0 0 10px}.help{font-size:12px;line-height:1.5;color:#626457;margin:8px 0 16px}
+.view-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}button{padding:8px;border:1px solid #bbb8aa;border-radius:4px;background:#fffdf6;color:inherit;cursor:pointer}button:hover{background:#e9e6d8}button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid #7b863b;outline-offset:2px}
+.variant-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:14px 0}.variant-buttons button[aria-pressed=true]{background:#365e68;color:white;border-color:#365e68;font-weight:600}
+.slider{margin:14px 0}.slider label{display:flex;justify-content:space-between;font-size:13px}.slider input{width:100%;margin:8px 0;accent-color:#7b863b}.slider output{font-variant-numeric:tabular-nums}
+.dimensions{margin:14px 0;padding:10px 0;border-top:1px solid #ddd9cc;border-bottom:1px solid #ddd9cc;font-size:12px;line-height:1.6}.dimensions p{margin:6px 0;color:#626457}.parts-list{padding-left:18px;margin:8px 0}.parts-list ul{padding-left:18px;margin:5px 0 9px}.parts-list li{margin:4px 0}
+aside details{margin:6px 0}aside summary{cursor:pointer;font-size:13px;padding:3px 0}aside input[type=checkbox]{vertical-align:middle;margin-right:5px}.layer-children{margin-left:13px;padding-left:7px;border-left:1px solid #d7d4c6}.layer-leaf{display:block;font-size:13px;padding:3px 0;margin:3px 0}
+.downloads{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;margin:12px 0}.downloads a{color:#365e68}.status{font-size:12px;color:#626457;min-height:2em}
+canvas{flex:1;width:0;min-width:0;height:100%;display:block;touch-action:none}
+@media(max-width:650px){aside{flex-basis:215px;width:215px;padding:12px}.layer-children{margin-left:7px;padding-left:4px}}
+</style>
+<main><aside aria-label="Assembly controls">
+<h1>CPC backbone</h1>
+<p class="help">Drag to rotate. Scroll to zoom.<br>Shift-drag or right-drag to pan.<br>Use the tree to show or hide parts.</p>
+<div class="variant-buttons" aria-label="Rib material"><button id="printed" aria-pressed="false">Printed · 12 mm</button><button id="aluminum" aria-pressed="true">Aluminum · ⅛″</button></div>
+<div id="variant-description" class="help"></div>
+<div class="view-buttons">
+<button id="assembly">Whole layout</button><button id="end">End view</button>
+<button id="side">Side view</button><button id="pair">One rib section</button>
+<button id="bay">One slat bay</button><button id="hardware">Connection detail</button><button id="fit">Fit view</button><button id="all">Show all parts</button>
+</div>
+<div class="slider"><label for="zoom">Zoom <output id="zoom-value" for="zoom">100%</output></label><input id="zoom" type="range" min="25" max="1200" value="100"></div>
+<div id="status" class="status" aria-live="polite"></div>
+<section id="parts" aria-label="Layer visibility"><strong>Layers</strong></section>
+<details class="dimensions" open><summary>Assembly dimensions</summary>
+<div id="dimensions"></div>
+<p>Each section is a bolted pair of two adjacent halves, shown in separate colors. Sections and their fastening hardware are selected together.</p>
+<p>The pipe, rods, slats, spacers and hardware retain their sizes in both versions. Threads use simplified envelopes.</p>
+</details>
+<details class="dimensions" open id="parts-list"><summary>Parts and subassemblies</summary><div id="assembly-parts"></div></details>
+<div class="downloads"><a data-file="rib-half.stl" href="__MODEL_DIR__/rib-half.stl">Rib STL</a><a data-file="rib-half.step" href="__MODEL_DIR__/rib-half.step">Rib STEP</a><a data-file="rib-section.step" href="__MODEL_DIR__/rib-section.step">Section STEP</a><a data-file="backbone.step" href="__MODEL_DIR__/backbone.step">Assembly STEP</a><a data-file="backbone.glb" href="__MODEL_DIR__/backbone.glb">GLB</a></div>
+
+
+</aside><canvas id="view" aria-label="Interactive 3D CPC backbone assembly"></canvas></main>
+<script>
+'use strict';
+const raw=__DATA__;
+const configurations=__CONFIGS__;
+const definitions=__VARIANTS__;
+let currentVariant="aluminum",config=configurations[currentVariant];
+const c=document.getElementById('view'),g=c.getContext('webgl',{antialias:true,preserveDrawingBuffer:true});
+if(!g){document.getElementById('status').textContent='WebGL unavailable. Open __MODEL_DIR__/backbone.glb in a 3D viewer.';throw Error('WebGL unavailable')}
+const vs=`attribute vec3 p;attribute vec3 n;uniform vec2 angle;uniform vec3 focus,offset;uniform float zoom,aspect;varying vec3 normal;
+vec3 rotate(vec3 a){float cy=cos(angle.x),sy=sin(angle.x),cx=cos(angle.y),sx=sin(angle.y);vec3 b=vec3(cy*a.x+sy*a.z,a.y,-sy*a.x+cy*a.z);return vec3(b.x,cx*b.y-sx*b.z,sx*b.y+cx*b.z);}
+void main(){vec3 q=rotate(p+offset-focus);gl_Position=vec4(q.x*zoom/aspect,q.y*zoom,-q.z/4000.,1.);normal=rotate(n);}`;
+const fs=`precision mediump float;uniform vec3 color;varying vec3 normal;
+void main(){float light=.36+.64*abs(dot(normalize(normal),normalize(vec3(-.3,.55,1.))));gl_FragColor=vec4(color*light,1.);}`;
+function shader(type,source){const s=g.createShader(type);g.shaderSource(s,source);g.compileShader(s);if(!g.getShaderParameter(s,g.COMPILE_STATUS))throw Error(g.getShaderInfoLog(s));return s}
+const program=g.createProgram();g.attachShader(program,shader(g.VERTEX_SHADER,vs));g.attachShader(program,shader(g.FRAGMENT_SHADER,fs));g.linkProgram(program);
+if(!g.getProgramParameter(program,g.LINK_STATUS))throw Error(g.getProgramInfoLog(program));g.useProgram(program);
+const loc={};for(const name of ['angle','zoom','aspect','focus','offset','color'])loc[name]=g.getUniformLocation(program,name);
+const pos=g.getAttribLocation(program,'p'),nor=g.getAttribLocation(program,'n');g.enableVertexAttribArray(pos);g.enableVertexAttribArray(nor);g.enable(g.DEPTH_TEST);
+let yaw=.65,pitch=.35,zoom=1/1000,fitZoom=zoom,focus=[0,75,0];
+const geometry=new Map(raw.map(o=>{const bytes=Uint8Array.from(atob(o.data),x=>x.charCodeAt(0));o.buffer=g.createBuffer();g.bindBuffer(g.ARRAY_BUFFER,o.buffer);g.bufferData(g.ARRAY_BUFFER,new Float32Array(bytes.buffer),g.STATIC_DRAW);delete o.data;return[o.key,o]}));
+function bindGeometry(o){const asset=geometry.get(o.asset);return{...o,buffer:asset.buffer,count:asset.count}}
+const parts=definitions[currentVariant].map(o=>({...bindGeometry(o),visible:true}));
+function offsetFor(o){return o.offset}
+function syncVariantUI(){
+ for(const key of ['printed','aluminum'])document.getElementById(key).setAttribute('aria-pressed',String(key===currentVariant));
+ document.getElementById('variant-description').textContent=currentVariant==='aluminum'?'CNC aluminum · fixed ⅛″ (3.175 mm) plate':'Printed prototype · fixed 12 mm halves';
+ const f=(v,n=2)=>Number(v).toFixed(n);
+ document.getElementById('dimensions').innerHTML=`Rib span: ${f(config.backbone_length_mm/25.4)}″ / ${f(config.backbone_length_mm)} mm<br>Rib half: ${f(config.rib_thickness_mm,3)} mm · pair: ${f(config.pair_thickness_mm,3)} mm<br>Station pitch: ${f(config.station_pitch_mm,3)} mm<br>Pipe extension: ${f(config.pipe_overhang_each_mm/25.4)}″ each end<br>Reflector arc: 12″ per side · acceptance ±28.63°<br>Curved arm: 22 mm · cradle wall: 8 mm`;
+ const ribName=currentVariant==='aluminum'?'⅛″ CNC aluminum rib halves':'12 mm printed rib halves';
+ document.getElementById('assembly-parts').innerHTML=`<ul class="parts-list">
+ <li><strong>Receiver</strong><ul><li>1 × 72″ receiver pipe, 33.401 mm OD</li></ul></li>
+ <li><strong>Rib sections × 5</strong><ul><li>Each bolted section<ul>
+ <li>2 × ${ribName}</li><li>2 × ¼″-20 × ${config.hardware.bolt_length_label}″ pair bolts</li><li>4 × ¼″ flat washers</li><li>2 × ¼″-20 hex nuts</li>
+ <li>10 × #8-32 × ${config.slats.slat_screw_length_label}″ slat screws</li><li>20 × #8 flat washers</li><li>10 × #8-32 hex nuts</li></ul></li></ul></li>
+ <li><strong>Reflector support bays × 4</strong><ul><li>Each bay: 10 identical slats, 5 per side</li><li>One master part, 40 copies total</li><li>¾″ × 1/16″ strip, 363 mm formed length, 90° end tabs</li></ul></li>
+ <li><strong>Connecting structure</strong><ul><li>2 × ¼″-20 all-thread rods, 61″ long</li><li>8 × ½″ PVC spacers, 359.825 mm long</li><li>20 × 1″ OD fender washers</li><li>4 × ¼″-20 nylon-insert lock nuts</li></ul></li>
+ </ul>`;
+ for(const a of document.querySelectorAll('.downloads a'))a.setAttribute('href',config.download_dir+'/'+a.dataset.file);
+}
+function setVariant(key){
+ if(!definitions[key])return;
+ currentVariant=key;config=configurations[key];
+ const replacements=new Map(definitions[key].map(o=>[o.name,o]));
+ for(const part of parts)Object.assign(part,bindGeometry(replacements.get(part.name)));
+ syncVariantUI();syncLayerChecks();fitView();
+}
+for(const key of ['printed','aluminum'])document.getElementById(key).onclick=()=>setVariant(key);
+syncVariantUI();
+const leafLabel=name=>name==='receiver-pipe'?'Receiver pipe':name.endsWith('-right')?'Half A':name.endsWith('-left')?'Half A, flipped':name.replace(/-/g,' ');
+const leaf=part=>({key:part.name,label:leafLabel(part.name),part});
+const matching=fn=>parts.filter(fn).map(leaf);
+const layerRoot={key:'all',label:'Complete rib layout',open:true,children:[
+{key:'ribs',label:'Bolted rib sections',open:true,children:Array.from({length:config.rib_stations},(_,i)=>({key:'station-'+i,label:'Rib section '+(i+1)+' (pair)',parts:parts.filter(p=>p.station===i)}))},
+{key:'slats',label:'Reflector support slats',open:true,children:Array.from({length:4},(_,i)=>({key:'bay-'+i,label:'Slat bay '+(i+1)+' (10 slats)',parts:parts.filter(p=>p.category==='slats'&&p.bay===i)}))},
+{key:'connectors',label:'Connecting structure',open:true,children:[
+{key:'rods',label:'All-thread rods',parts:parts.filter(p=>p.category==='connecting'&&p.name.includes('all-thread'))},
+{key:'spacers',label:'PVC spacers',parts:parts.filter(p=>p.category==='connecting'&&p.name.includes('PVC-spacer'))},
+{key:'connector-hardware',label:'Connector washers and lock nuts',parts:parts.filter(p=>p.category==='connecting'&&!p.name.includes('all-thread')&&!p.name.includes('PVC-spacer'))}]},
+{key:'pipe',label:'Receiver pipe',parts:parts.filter(p=>p.category==='pipe')}]};
+function descendants(node){return node.parts?node.parts:node.part?[node.part]:node.children.flatMap(descendants)}
+const layerNodes=new Map();
+function syncLayerChecks(){for(const node of layerNodes.values()){const list=descendants(node),n=list.filter(p=>p.visible).length;node.checkbox.checked=n===list.length;node.checkbox.indeterminate=n>0&&n<list.length}}
+function setLayerVisibility(node,visible){for(const part of descendants(node))part.visible=visible;syncLayerChecks();draw()}
+function renderLayer(node,parent){const input=document.createElement('input');input.type='checkbox';input.checked=true;input.setAttribute('aria-label',node.label);input.addEventListener('click',e=>e.stopPropagation());input.onchange=()=>setLayerVisibility(node,input.checked);node.checkbox=input;layerNodes.set(node.key,node);
+if(node.part||node.parts){const label=document.createElement('label');label.className='layer-leaf';label.append(input,document.createTextNode(' '+node.label));parent.append(label)}
+else{const details=document.createElement('details');details.open=!!node.open;const summary=document.createElement('summary');summary.append(input,document.createTextNode(' '+node.label));details.append(summary);const children=document.createElement('div');children.className='layer-children';for(const child of node.children)renderLayer(child,children);details.append(children);parent.append(details)}}
+renderLayer(layerRoot,document.getElementById('parts'));syncLayerChecks();
+function rotatePoint(a){const cy=Math.cos(yaw),sy=Math.sin(yaw),cx=Math.cos(pitch),sx=Math.sin(pitch);const b=[cy*a[0]+sy*a[2],a[1],-sy*a[0]+cy*a[2]];return[b[0],cx*b[1]-sx*b[2],sx*b[1]+cx*b[2]]}
+function syncZoom(){const p=Math.round(100*zoom/fitZoom);document.getElementById('zoom').value=Math.max(25,Math.min(1200,p));document.getElementById('zoom-value').textContent=p+'%'}
+function draw(){syncZoom();const d=Math.min(devicePixelRatio||1,2);c.width=Math.max(1,Math.round(c.clientWidth*d));c.height=Math.max(1,Math.round(c.clientHeight*d));g.viewport(0,0,c.width,c.height);g.clearColor(.925,.91,.86,1);g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.uniform2f(loc.angle,yaw,pitch);g.uniform3fv(loc.focus,focus);g.uniform1f(loc.zoom,zoom);g.uniform1f(loc.aspect,c.width/c.height);
+for(const o of parts){if(!o.visible)continue;g.bindBuffer(g.ARRAY_BUFFER,o.buffer);g.vertexAttribPointer(pos,3,g.FLOAT,false,24,0);g.vertexAttribPointer(nor,3,g.FLOAT,false,24,12);g.uniform3fv(loc.offset,offsetFor(o));g.uniform3fv(loc.color,o.color);g.drawArrays(g.TRIANGLES,0,o.count)}
+document.getElementById('status').textContent=new Set(parts.filter(p=>p.visible&&p.category==='ribs').map(p=>p.station)).size+' rib sections visible'+(parts.some(p=>p.visible&&p.category==='pipe')?' · pipe visible':'')}
+function fitView(){const visible=parts.filter(p=>p.visible);if(!visible.length){draw();return}
+const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(const p of visible){const shift=offsetFor(p);for(let j=0;j<3;j++){lo[j]=Math.min(lo[j],p.bounds[0][j]+shift[j]);hi[j]=Math.max(hi[j],p.bounds[1][j]+shift[j])}}
+focus=lo.map((v,j)=>(v+hi[j])/2);let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+for(const x of [lo[0],hi[0]])for(const y of [lo[1],hi[1]])for(const z of [lo[2],hi[2]]){const q=rotatePoint([x-focus[0],y-focus[1],z-focus[2]]);minX=Math.min(minX,q[0]);maxX=Math.max(maxX,q[0]);minY=Math.min(minY,q[1]);maxY=Math.max(maxY,q[1])}
+fitZoom=Math.min(1.70*(c.clientWidth/c.clientHeight)/Math.max(maxX-minX,1),1.70/Math.max(maxY-minY,1));zoom=fitZoom;draw()}
+function chooseView(name){if(name==='hardware'){for(const p of parts)p.visible=true;yaw=.9;pitch=.35;focus=[-config.backbone_length_mm/2+12,-45,0];fitZoom=zoom=.012;syncLayerChecks();draw();return}
+if(name==='bay'){for(const p of parts)p.visible=(p.station===0||p.station===1||p.bay===0);yaw=.65;pitch=.35}
+else if(name==='pair'){for(const p of parts)p.visible=p.station===0;yaw=-1.0;pitch=.3}
+else{for(const p of parts)p.visible=true;yaw=name==='end'?-Math.PI/2:name==='side'?0:.65;pitch=name==='end'||name==='side'?0:.35}
+syncLayerChecks();fitView()}
+for(const name of ['assembly','end','side','pair','hardware','bay'])document.getElementById(name).onclick=()=>chooseView(name);
+document.getElementById('fit').onclick=fitView;document.getElementById('all').onclick=()=>{for(const p of parts)p.visible=true;syncLayerChecks();fitView()};
+document.getElementById('zoom').oninput=e=>{zoom=fitZoom*Number(e.target.value)/100;draw()};
+let drag=false,pan=false,lastX=0,lastY=0;c.oncontextmenu=e=>e.preventDefault();
+c.onpointerdown=e=>{drag=true;pan=e.shiftKey||e.button===2;lastX=e.clientX;lastY=e.clientY;c.setPointerCapture(e.pointerId)};c.onpointerup=()=>drag=false;c.onpointercancel=()=>drag=false;
+c.onpointermove=e=>{if(!drag)return;const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;if(pan){const vx=2*dx*(c.clientWidth/c.clientHeight)/(zoom*c.clientWidth),vy=-2*dy/(zoom*c.clientHeight),by=Math.cos(pitch)*vy,bz=-Math.sin(pitch)*vy;focus[0]-=Math.cos(yaw)*vx-Math.sin(yaw)*bz;focus[1]-=by;focus[2]-=Math.sin(yaw)*vx+Math.cos(yaw)*bz}else{yaw+=dx*.006;pitch+=dy*.006}draw()};
+c.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(fitZoom*.25,Math.min(fitZoom*12,zoom*Math.exp(-e.deltaY*.001)));draw()},{passive:false});
+window.addEventListener('resize',fitView);requestAnimationFrame(()=>{const query=new URLSearchParams(location.search);const selected=query.get('variant');if(definitions[selected])setVariant(selected);const view=query.get('view');chooseView(['end','side','pair','hardware','bay'].includes(view)?view:'assembly')});
+window.cpcViewer={parts,layerRoot,layerNodes,chooseView,fitView,setVariant,getVariant:()=>currentVariant,getState:()=>({variant:currentVariant,yaw,pitch,zoom,fitZoom,focus:[...focus]}),webgl:g};
+</script></html>

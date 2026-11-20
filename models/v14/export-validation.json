@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-19",
+  "checks": [
+    "printed: exported fastener lengths match BOM; all other part bounds retained from v13",
+    "printed: all five STEP files valid with expected solid counts and assembly hierarchy; rib thickness and pipe endpoints verified; both STL meshes watertight with expected holes; GLB and viewer data contain 329 parts",
+    "aluminum: exported fastener lengths match BOM; all other part bounds retained from v13",
+    "aluminum: all five STEP files valid with expected solid counts and assembly hierarchy; rib thickness and pipe endpoints verified; both STL meshes watertight with expected holes; GLB and viewer data contain 329 parts",
+    "Master slat STEP geometry DATA and STL identical to v12 in both material variants"
+  ]
+}

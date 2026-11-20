@@ -1,0 +1,24 @@
+{
+  "printed": {
+    "thickness_mm": 12.0,
+    "rib_span_mm": 1524.0,
+    "pitch_mm": 375.0,
+    "pipe_length_mm": 1828.8,
+    "pipe_overhang_each_mm": 152.39999999999998,
+    "rod_length_mm": 1549.3999999999999,
+    "slat_length_mm": 363.0,
+    "rib_bolt_length_mm": 38.099999999999994,
+    "slat_screw_length_mm": 25.4
+  },
+  "aluminum": {
+    "thickness_mm": 3.175,
+    "rib_span_mm": 1471.05,
+    "pitch_mm": 366.175,
+    "pipe_length_mm": 1828.8,
+    "pipe_overhang_each_mm": 178.875,
+    "rod_length_mm": 1549.3999999999999,
+    "slat_length_mm": 363.0,
+    "rib_bolt_length_mm": 19.049999999999997,
+    "slat_screw_length_mm": 15.875
+  }
+}

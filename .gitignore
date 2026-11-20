@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+.venv/
+models/**/viewer-parts.json

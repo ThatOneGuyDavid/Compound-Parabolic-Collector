@@ -1,0 +1,197 @@
+{
+  "unique_slat_designs": 1,
+  "slat_instance_quantity": 40,
+  "formed_overall_length_mm": 363.0,
+  "slat_quantity": 40,
+  "slats_per_side_per_bay": 5,
+  "width_mm": 19.05,
+  "thickness_mm": 1.5875,
+  "inner_bend_radius_mm": 1.5875,
+  "tab_depth_mm": 19.05,
+  "hole_depth_mm": 11.5,
+  "lowest_arc_distance_mm": 45.0,
+  "layout": [
+    {
+      "index": 1,
+      "point": [
+        47.17904536877536,
+        -10.722928251725877
+      ],
+      "tangent": [
+        0.7335364369462561,
+        0.6796501273980541
+      ],
+      "normal": [
+        0.6796501273980541,
+        -0.7335364369462561
+      ],
+      "hole": [
+        54.99502183385299,
+        -19.15859727660782
+      ],
+      "arc_distance": 45.0
+    },
+    {
+      "index": 2,
+      "point": [
+        80.9393958047819,
+        41.32365511930103
+      ],
+      "tangent": [
+        0.3819773171911352,
+        0.9241716989561318
+      ],
+      "normal": [
+        0.9241716989561318,
+        -0.3819773171911352
+      ],
+      "hole": [
+        91.56737034277741,
+        36.93091597160298
+      ],
+      "arc_distance": 107.56873079912053
+    },
+    {
+      "index": 3,
+      "point": [
+        98.45195774638053,
+        101.73864427857283
+      ],
+      "tangent": [
+        0.19255144694802606,
+        0.981286879703495
+      ],
+      "normal": [
+        0.981286879703495,
+        -0.19255144694802606
+      ],
+      "hole": [
+        109.73675686297072,
+        99.52430263867053
+      ],
+      "arc_distance": 170.13746159824106
+    },
+    {
+      "index": 4,
+      "point": [
+        106.79117320022718,
+        164.00274071736808
+      ],
+      "tangent": [
+        0.08137282581824992,
+        0.9966837327950893
+      ],
+      "normal": [
+        0.9966837327950893,
+        -0.08137282581824992
+      ],
+      "hole": [
+        118.2530361273707,
+        163.0669532204582
+      ],
+      "arc_distance": 232.70619239736158
+    },
+    {
+      "index": 5,
+      "point": [
+        109.4884518649918,
+        225.91684610581456
+      ],
+      "tangent": [
+        0.0010986863272818726,
+        0.9999993964439949
+      ],
+      "normal": [
+        0.9999993964439949,
+        -0.0010986863272818726
+      ],
+      "hole": [
+        120.98844492409775,
+        225.90421121305081
+      ],
+      "arc_distance": 295.2749231964821
+    }
+  ],
+  "top_edge_error_mm": 0.0,
+  "tangent_normal_dot_error": 0.0,
+  "flat_support_plane": "v=0, flush with tangent seats cut in rib edges",
+  "slat_fastener": "#8-32 x 5/8 inch pan-head machine screw, two small washers and nut; shared through-fastener at interior stations",
+  "fastener_thread": "#8-32 UNC",
+  "slat_fastener_quantity": 50,
+  "slat_washer_quantity": 100,
+  "slat_nut_quantity": 50,
+  "slat_hole_diameter_mm": 4.762499999999999,
+  "slat_washer_OD_mm": 9.524999999999999,
+  "slat_washer_thickness_mm": 0.8128,
+  "slat_screw_head_OD_mm": 7.924799999999999,
+  "slat_screw_length_mm": 15.875,
+  "slat_screw_length_label": "5/8",
+  "slat_joint_stacks": [
+    {
+      "station": 1,
+      "stack_mm": 9.6901,
+      "protrusion_mm": 6.184900000000001
+    },
+    {
+      "station": 2,
+      "stack_mm": 11.2776,
+      "protrusion_mm": 4.5974
+    },
+    {
+      "station": 3,
+      "stack_mm": 11.2776,
+      "protrusion_mm": 4.5974
+    },
+    {
+      "station": 4,
+      "stack_mm": 11.2776,
+      "protrusion_mm": 4.5974
+    },
+    {
+      "station": 5,
+      "stack_mm": 9.6901,
+      "protrusion_mm": 6.184900000000001
+    }
+  ],
+  "reflector_arc_per_side_mm": 304.79999999999995,
+  "acceptance_half_angle_deg": 28.629760059886856,
+  "rib_back_envelope": {
+    "rib_web_mm": 22.0,
+    "slat_tail_depth_mm": 19.05,
+    "rows": [
+      {
+        "row": 1,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 5.304191321700286,
+        "minimum_after_edge_roundover_mm": 4.5041913217002865
+      },
+      {
+        "row": 2,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.7612813988233835,
+        "minimum_after_edge_roundover_mm": 1.9612813988233835
+      },
+      {
+        "row": 3,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.8483496328517495,
+        "minimum_after_edge_roundover_mm": 2.0483496328517496
+      },
+      {
+        "row": 4,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.8862926302768814,
+        "minimum_after_edge_roundover_mm": 2.0862926302768816
+      },
+      {
+        "row": 5,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.79977612494236,
+        "minimum_after_edge_roundover_mm": 1.99977612494236
+      }
+    ],
+    "minimum_proud_mm": 1.9612813988233835,
+    "method": "Entire slat/bend/tail projected footprint contained in seated rib; tail-to-smooth-back distance minus edge radius"
+  },
+  "provisional": "3/4 x 1/16 inch aluminum strip; dimensions for review, not final fabrication"
+}

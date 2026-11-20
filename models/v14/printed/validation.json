@@ -1,0 +1,448 @@
+{
+  "revision": "model-v14",
+  "variant": "printed",
+  "material": "Printed prototype",
+  "units": "mm",
+  "glb_units": "m",
+  "rib_stations": 5,
+  "identical_half_quantity": 10,
+  "backbone_length_mm": 1524.0,
+  "pipe_length_mm": 1828.8,
+  "pipe_overhang_each_mm": 152.39999999999998,
+  "station_starts_mm": [
+    0.0,
+    375.0,
+    750.0,
+    1125.0,
+    1500.0
+  ],
+  "station_pitch_mm": 375.0,
+  "rib_thickness_mm": 12.0,
+  "pair_thickness_mm": 24.0,
+  "half_offset_mm": 12.0,
+  "station_half_intervals_mm": [
+    [
+      [
+        0.0,
+        12.0
+      ],
+      [
+        12.0,
+        24.0
+      ]
+    ],
+    [
+      [
+        375.0,
+        387.0
+      ],
+      [
+        387.0,
+        399.0
+      ]
+    ],
+    [
+      [
+        750.0,
+        762.0
+      ],
+      [
+        762.0,
+        774.0
+      ]
+    ],
+    [
+      [
+        1125.0,
+        1137.0
+      ],
+      [
+        1137.0,
+        1149.0
+      ]
+    ],
+    [
+      [
+        1500.0,
+        1512.0
+      ],
+      [
+        1512.0,
+        1524.0
+      ]
+    ]
+  ],
+  "reflector_arc_per_side_mm": 304.79999999999995,
+  "acceptance_half_angle_deg": 28.629760059886856,
+  "pipe_od_mm": 33.400999999999996,
+  "pipe_id_mm": 26.6,
+  "cradle_bore_mm": 34.400999999999996,
+  "cradle_wall_mm": 8.0,
+  "part_bounds_mm": [
+    162.49554097326472,
+    297.4418333960937,
+    11.999999899999999
+  ],
+  "mounting_hole_diameter_mm": 7.14375,
+  "mounting_hole_spacing_mm": 30,
+  "hole_centers_per_half_mm": [
+    [
+      -15.0,
+      -45.0
+    ],
+    [
+      15.0,
+      -45.0
+    ],
+    [
+      45.0,
+      -45.0
+    ]
+  ],
+  "gusset_hole_center_mm": [
+    45.0,
+    -45.0
+  ],
+  "gusset_hole_outer_edge_margin_mm": 13.428125,
+  "reflection_relief": true,
+  "rib_side_radius_mm": 17.0,
+  "pad_end_radius_mm": 17.0,
+  "pad_end_center_mm": [
+    -14.0,
+    -45.0
+  ],
+  "exposed_edge_roundover_mm": 0.8,
+  "rounded_edges": 6,
+  "paired_subassembly_count": 5,
+  "connecting_structure": "Two 1/4-20 all-thread rods with 1/2 inch nominal PVC spacers",
+  "bolting_hardware": "Two 1/4-20 x 1-1/2 inch bolts per section, washers and nuts",
+  "hardware": {
+    "thread": "1/4-20 UNC",
+    "thread_diameter_mm": 6.35,
+    "thread_pitch_mm": 1.27,
+    "clearance_hole_mm": 7.14375,
+    "bolt_length_mm": 38.099999999999994,
+    "bolt_length_label": "1-1/2",
+    "bolt_stack_mm": 32.73125,
+    "bolt_protrusion_mm": 5.3687499999999915,
+    "bolt_exposed_threads": 4.227362204724403,
+    "rod_length_mm": 1549.3999999999999,
+    "rod_start_mm": -12.699999999999932,
+    "spacer_length_mm": 359.825,
+    "spacer_OD_mm": 21.336,
+    "spacer_ID_mm": 15.7988,
+    "washer_thickness_mm": 1.5875,
+    "spacer_washer_OD_mm": 25.4,
+    "spacers": [
+      {
+        "row": "right",
+        "bay": 1,
+        "start": 13.5875,
+        "end": 373.4125,
+        "length": 359.825
+      },
+      {
+        "row": "right",
+        "bay": 2,
+        "start": 388.5875,
+        "end": 748.4125,
+        "length": 359.825
+      },
+      {
+        "row": "right",
+        "bay": 3,
+        "start": 763.5875,
+        "end": 1123.4125,
+        "length": 359.825
+      },
+      {
+        "row": "right",
+        "bay": 4,
+        "start": 1138.5875,
+        "end": 1498.4125,
+        "length": 359.825
+      },
+      {
+        "row": "left",
+        "bay": 1,
+        "start": 25.5875,
+        "end": 385.4125,
+        "length": 359.825
+      },
+      {
+        "row": "left",
+        "bay": 2,
+        "start": 400.5875,
+        "end": 760.4125,
+        "length": 359.825
+      },
+      {
+        "row": "left",
+        "bay": 3,
+        "start": 775.5875,
+        "end": 1135.4125,
+        "length": 359.825
+      },
+      {
+        "row": "left",
+        "bay": 4,
+        "start": 1150.5875,
+        "end": 1510.4125,
+        "length": 359.825
+      }
+    ],
+    "bom": [
+      {
+        "item": "1/4-20 x 1-1/2 inch hex bolt",
+        "quantity": 10
+      },
+      {
+        "item": "1/4-20 hex nut",
+        "quantity": 10
+      },
+      {
+        "item": "1/4 inch flat washer, 5/8 inch OD",
+        "quantity": 20
+      },
+      {
+        "item": "1/4-20 all-thread, 61 inch length",
+        "quantity": 2
+      },
+      {
+        "item": "1/2 inch nominal Schedule 40 PVC spacer",
+        "quantity": 8,
+        "cut_length_mm": 359.825
+      },
+      {
+        "item": "1/4 inch fender washer, 1 inch OD",
+        "quantity": 20
+      },
+      {
+        "item": "1/4-20 nylon-insert lock nut",
+        "quantity": 4
+      }
+    ],
+    "thread_representation": "Nominal envelopes; helical threads omitted",
+    "dimensions": "Provisional envelopes; measure purchased washers and PVC before cutting spacers",
+    "rib_and_receiver_interference_checks": 62,
+    "clearance_method": "Axial slices against unfilleted rib material buffered 0.02 mm; nominal fastener envelopes"
+  },
+  "slats": {
+    "unique_slat_designs": 1,
+    "slat_instance_quantity": 40,
+    "formed_overall_length_mm": 363.0,
+    "slat_quantity": 40,
+    "slats_per_side_per_bay": 5,
+    "width_mm": 19.05,
+    "thickness_mm": 1.5875,
+    "inner_bend_radius_mm": 1.5875,
+    "tab_depth_mm": 19.05,
+    "hole_depth_mm": 11.5,
+    "lowest_arc_distance_mm": 45.0,
+    "layout": [
+      {
+        "index": 1,
+        "point": [
+          47.17904536877536,
+          -10.722928251725877
+        ],
+        "tangent": [
+          0.7335364369462561,
+          0.6796501273980541
+        ],
+        "normal": [
+          0.6796501273980541,
+          -0.7335364369462561
+        ],
+        "hole": [
+          54.99502183385299,
+          -19.15859727660782
+        ],
+        "arc_distance": 45.0
+      },
+      {
+        "index": 2,
+        "point": [
+          80.9393958047819,
+          41.32365511930103
+        ],
+        "tangent": [
+          0.3819773171911352,
+          0.9241716989561318
+        ],
+        "normal": [
+          0.9241716989561318,
+          -0.3819773171911352
+        ],
+        "hole": [
+          91.56737034277741,
+          36.93091597160298
+        ],
+        "arc_distance": 107.56873079912053
+      },
+      {
+        "index": 3,
+        "point": [
+          98.45195774638053,
+          101.73864427857283
+        ],
+        "tangent": [
+          0.19255144694802606,
+          0.981286879703495
+        ],
+        "normal": [
+          0.981286879703495,
+          -0.19255144694802606
+        ],
+        "hole": [
+          109.73675686297072,
+          99.52430263867053
+        ],
+        "arc_distance": 170.13746159824106
+      },
+      {
+        "index": 4,
+        "point": [
+          106.79117320022718,
+          164.00274071736808
+        ],
+        "tangent": [
+          0.08137282581824992,
+          0.9966837327950893
+        ],
+        "normal": [
+          0.9966837327950893,
+          -0.08137282581824992
+        ],
+        "hole": [
+          118.2530361273707,
+          163.0669532204582
+        ],
+        "arc_distance": 232.70619239736158
+      },
+      {
+        "index": 5,
+        "point": [
+          109.4884518649918,
+          225.91684610581456
+        ],
+        "tangent": [
+          0.0010986863272818726,
+          0.9999993964439949
+        ],
+        "normal": [
+          0.9999993964439949,
+          -0.0010986863272818726
+        ],
+        "hole": [
+          120.98844492409775,
+          225.90421121305081
+        ],
+        "arc_distance": 295.2749231964821
+      }
+    ],
+    "top_edge_error_mm": 0.0,
+    "tangent_normal_dot_error": 0.0,
+    "flat_support_plane": "v=0, flush with tangent seats cut in rib edges",
+    "slat_fastener": "#8-32 x 1 inch pan-head machine screw, two small washers and nut; shared through-fastener at interior stations",
+    "fastener_thread": "#8-32 UNC",
+    "slat_fastener_quantity": 50,
+    "slat_washer_quantity": 100,
+    "slat_nut_quantity": 50,
+    "slat_hole_diameter_mm": 4.762499999999999,
+    "slat_washer_OD_mm": 9.524999999999999,
+    "slat_washer_thickness_mm": 0.8128,
+    "slat_screw_head_OD_mm": 7.924799999999999,
+    "slat_screw_length_mm": 25.4,
+    "slat_screw_length_label": "1",
+    "slat_joint_stacks": [
+      {
+        "station": 1,
+        "stack_mm": 18.5151,
+        "protrusion_mm": 6.884899999999998
+      },
+      {
+        "station": 2,
+        "stack_mm": 20.1026,
+        "protrusion_mm": 5.2974
+      },
+      {
+        "station": 3,
+        "stack_mm": 20.1026,
+        "protrusion_mm": 5.2974
+      },
+      {
+        "station": 4,
+        "stack_mm": 20.1026,
+        "protrusion_mm": 5.2974
+      },
+      {
+        "station": 5,
+        "stack_mm": 18.5151,
+        "protrusion_mm": 6.884899999999998
+      }
+    ],
+    "reflector_arc_per_side_mm": 304.79999999999995,
+    "acceptance_half_angle_deg": 28.629760059886856,
+    "rib_back_envelope": {
+      "rib_web_mm": 22.0,
+      "slat_tail_depth_mm": 19.05,
+      "rows": [
+        {
+          "row": 1,
+          "footprint_outside_rib_mm2": 0.0,
+          "tail_to_back_curve_mm": 5.304191321700286,
+          "minimum_after_edge_roundover_mm": 4.5041913217002865
+        },
+        {
+          "row": 2,
+          "footprint_outside_rib_mm2": 0.0,
+          "tail_to_back_curve_mm": 2.7612813988233835,
+          "minimum_after_edge_roundover_mm": 1.9612813988233835
+        },
+        {
+          "row": 3,
+          "footprint_outside_rib_mm2": 0.0,
+          "tail_to_back_curve_mm": 2.8483496328517495,
+          "minimum_after_edge_roundover_mm": 2.0483496328517496
+        },
+        {
+          "row": 4,
+          "footprint_outside_rib_mm2": 0.0,
+          "tail_to_back_curve_mm": 2.8862926302768814,
+          "minimum_after_edge_roundover_mm": 2.0862926302768816
+        },
+        {
+          "row": 5,
+          "footprint_outside_rib_mm2": 0.0,
+          "tail_to_back_curve_mm": 2.79977612494236,
+          "minimum_after_edge_roundover_mm": 1.99977612494236
+        }
+      ],
+      "minimum_proud_mm": 1.9612813988233835,
+      "method": "Entire slat/bend/tail projected footprint contained in seated rib; tail-to-smooth-back distance minus edge radius"
+    },
+    "provisional": "3/4 x 1/16 inch aluminum strip; dimensions for review, not final fabrication"
+  },
+  "parts": 329,
+  "half_pair_overlap_mm3": 0,
+  "checks": [
+    "All native solids valid",
+    "Rib-half STEP reimports as one solid",
+    "Print STL watertight, positive volume and on Z0",
+    "STL topology confirms three pad holes and five slat holes per half",
+    "Print footprint fits 420 mm bed",
+    "Full-thickness halves occupy adjacent axial intervals; no volumetric interference",
+    "Pipe clears assembled paired ribs",
+    "Rib layout span and pipe overhangs match requested lengths",
+    "Assembly STEP reimports with five bolted sections, grouped connectors and pipe",
+    "Paired-section STEP reimports as two ribs plus 48 fastening components"
+  ],
+  "provisional": [
+    "12 mm fixed rib thickness",
+    "8 mm cradle wall",
+    "3/4 x 1/16 inch aluminum slats, 1/16 inch inner bend radius",
+    "Pipe ID is illustrative",
+    "Hardware envelopes and PVC dimensions provisional; no helical threads, physical fit or load test; end supports and pipe retention remain undecided"
+  ]
+}

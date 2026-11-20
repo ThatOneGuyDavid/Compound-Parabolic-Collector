@@ -1,0 +1,24 @@
+{
+  "printed": {
+    "units": "mm",
+    "closed_contours": 9,
+    "holes": 8,
+    "structural_hole_diameter_mm": 7.14375,
+    "slat_hole_diameter_mm": 4.7625,
+    "area_error_mm2": 0.022798533225795836,
+    "sampled_boundary_error_mm": 0.0006518150192387503,
+    "method": "Mid-thickness STEP section, translated to XY; DXF round-trip, 33 boundary samples per edge in both directions",
+    "cnc_notes": "Nominal finished outline; no kerf/tool compensation or face edge-roundover machining instructions"
+  },
+  "aluminum": {
+    "units": "mm",
+    "closed_contours": 9,
+    "holes": 8,
+    "structural_hole_diameter_mm": 7.14375,
+    "slat_hole_diameter_mm": 4.7625,
+    "area_error_mm2": 0.022798533227614826,
+    "sampled_boundary_error_mm": 0.0006518150192387503,
+    "method": "Mid-thickness STEP section, translated to XY; DXF round-trip, 33 boundary samples per edge in both directions",
+    "cnc_notes": "Nominal finished outline; no kerf/tool compensation or face edge-roundover machining instructions"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "model": "v14",
+  "units": "mm",
+  "ideal_receiver_radius_mm": 16.700499999999998,
+  "acceptance_half_angle_deg": 28.629760059886856,
+  "source_type": "One fixed nearby point; illustrative fan, not parallel sunlight",
+  "wall_segments_per_side": 6000,
+  "reflections_per_ray": 1,
+  "checks": [
+    "Five distinct reflection points",
+    "One common source",
+    "Receiver reached before any second reflector hit",
+    "Unit reflected directions",
+    "Receiver radial endpoint errors below 1e-6 mm"
+  ],
+  "rays": [
+    {
+      "input_angle_deg": 4.963319640679389,
+      "source_mm": [
+        0.0,
+        240.4418403569436
+      ],
+      "reflection_mm": [
+        23.09364166536967,
+        -25.480346024097116
+      ],
+      "receiver_hit_mm": [
+        15.544496141361979,
+        -6.105353385446453
+      ],
+      "receiver_radial_error_mm": 0.0
+    },
+    {
+      "input_angle_deg": 10.629929745481256,
+      "source_mm": [
+        0.0,
+        240.4418403569436
+      ],
+      "reflection_mm": [
+        47.14579750087399,
+        -10.753717458562477
+      ],
+      "receiver_hit_mm": [
+        16.511205220763145,
+        -2.5073496780155615
+      ],
+      "receiver_radial_error_mm": 2.842170943040401e-14
+    },
+    {
+      "input_angle_deg": 16.296539850283125,
+      "source_mm": [
+        0.0,
+        240.4418403569436
+      ],
+      "reflection_mm": [
+        66.4931644058752,
+        13.00196478358572
+      ],
+      "receiver_hit_mm": [
+        15.967373883447031,
+        4.893840160468489
+      ],
+      "receiver_radial_error_mm": 1.7763568394002505e-14
+    },
+    {
+      "input_angle_deg": 21.963149955084987,
+      "source_mm": [
+        0.0,
+        240.4418403569436
+      ],
+      "reflection_mm": [
+        80.61494988068502,
+        40.542777763477005
+      ],
+      "receiver_hit_mm": [
+        11.862465677076926,
+        11.755365086213494
+      ],
+      "receiver_radial_error_mm": 1.3855583347321954e-13
+    },
+    {
+      "input_angle_deg": 27.629760059886856,
+      "source_mm": [
+        0.0,
+        240.4418403569436
+      ],
+      "reflection_mm": [
+        90.2713065134734,
+        67.98698592265038
+      ],
+      "receiver_hit_mm": [
+        -0.4486732860056293,
+        16.694471915350547
+      ],
+      "receiver_radial_error_mm": 9.947598300641403e-14
+    }
+  ]
+}

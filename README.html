@@ -1,0 +1,302 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CPC Solar Reflector Backbone</title><style>
+body{font:17px/1.65 system-ui,sans-serif;color:#24333b;background:#f6f4ec;margin:0}
+main{max-width:1080px;margin:36px auto;padding:32px 48px;background:white;border-radius:12px}
+h1,h2,h3{line-height:1.25}h1{font-size:2.25rem}h2{margin-top:2.1em;padding-bottom:.3em;border-bottom:1px solid #dce2e4}
+a{color:#176c81}img{max-width:100%;height:auto;border:1px solid #e0e3e0;border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow:auto}
+td,th{border:1px solid #ccd6d7;padding:10px 13px;text-align:left}th{background:#edf4f3}
+tr:nth-child(even){background:#f8faf9}pre{padding:18px;background:#edf1f3;overflow:auto;border-radius:6px}
+code{font-size:.9em}nav{font-size:14px;color:#52656c;border-bottom:1px solid #dce2e4;padding-bottom:14px}
+@media(max-width:700px){main{margin:0;padding:20px}h1{font-size:1.8rem}}
+@media print{body{background:white}main{margin:0;padding:0}a{color:inherit}}
+</style></head><body><main><nav><a href="README.html">GitHub project draft</a> · Local review copy</nav><h1>CPC Solar Reflector Backbone</h1>
+<p>A modular backbone for a compound parabolic concentrator (CPC), with five
+paired rib stations, one repeatable reflector-support slat, and a choice of
+3D-printed prototype ribs or CNC-cut aluminum ribs.</p>
+<h2>Inspiration and credit</h2>
+<p>This project was inspired by <strong>NightHawkInLight</strong> and his video
+<a href="https://www.youtube.com/watch?v=8zlAI32MSsQ">DIY Solar Concentrators, Made Better.</a>
+See also <a href="https://www.patreon.com/NightHawkProjects/posts/diy-solar-made-133833902">his companion project post</a>.
+His explanation of CPCs and string construction was the starting point for
+exploring a repeatable rib-and-slat structure around a tubular receiver.
+The CAD, dimensions, hardware choices and calculations presented here document
+this project's implementation. Credit does not imply his review or endorsement.</p>
+<h2>Current design</h2>
+<p><strong>v14 is a CAD design draft.</strong> The geometry and exported models have been
+checked; the assembly has not yet been physically built or tested. The printed
+option is for fit prototyping. Aluminum is the intended later rib material.
+Reflector material and attachment, receiver retention and external supports
+remain to be designed or confirmed.</p>
+<p><img alt="Aluminum backbone CAD preview" src="images/aluminum-backbone-preview.png" /></p>
+<ul>
+<li>Five stations, each made from two identical rib halves placed back-to-back
+  in adjacent axial intervals, for ten halves total.</li>
+<li>Four bays, each carrying five support slats on each side: forty copies of
+  one formed slat design.</li>
+<li>A 72″ receiver pipe, two 61″ all-thread rods and eight PVC spacer tubes.</li>
+<li>A 12″ reflector arc on each side, measured along the curve from the cradle
+  intersection to the rib tip. This is a curved length, not the opening width.</li>
+<li>A nominal transverse acceptance half-angle of ±28.62976°, calculated from
+  the chosen receiver and reflector arc.</li>
+</ul>
+<h2>Printed and aluminum build options</h2>
+<table>
+<thead>
+<tr>
+<th>Dimension or hardware</th>
+<th style="text-align: right;">Printed prototype</th>
+<th style="text-align: right;">CNC aluminum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rib-half thickness</td>
+<td style="text-align: right;">12 mm</td>
+<td style="text-align: right;">⅛″ / 3.175 mm</td>
+</tr>
+<tr>
+<td>Paired-section thickness</td>
+<td style="text-align: right;">24 mm</td>
+<td style="text-align: right;">6.35 mm</td>
+</tr>
+<tr>
+<td>Station pitch</td>
+<td style="text-align: right;">375 mm</td>
+<td style="text-align: right;">366.175 mm</td>
+</tr>
+<tr>
+<td>Rib layout span</td>
+<td style="text-align: right;">60″ / 1524 mm</td>
+<td style="text-align: right;">57.915″ / 1471.05 mm</td>
+</tr>
+<tr>
+<td>Receiver overhang, each end</td>
+<td style="text-align: right;">6″ / 152.4 mm</td>
+<td style="text-align: right;">7.042″ / 178.875 mm</td>
+</tr>
+<tr>
+<td>¼″-20 rib-pair bolts</td>
+<td style="text-align: right;">1½″ long</td>
+<td style="text-align: right;">¾″ long</td>
+</tr>
+<tr>
+<td>#8-32 slat screws</td>
+<td style="text-align: right;">1″ long</td>
+<td style="text-align: right;">⅝″ long</td>
+</tr>
+</tbody>
+</table>
+<p>The slats and PVC spacers keep the same length in both options. Thinner ribs
+therefore shorten the aluminum assembly and leave more of the centered pipe
+and rods exposed. Both options use the same transverse rib profile. The
+current half fits within an approximately 162.5 × 297.4 mm footprint.</p>
+<h2>Interactive 3D preview</h2>
+<p><a href="assembly-viewer.html">Download the self-contained 3D preview</a>, then open the
+downloaded HTML file in a WebGL-capable browser. If GitHub displays the file
+as source, use its download button or clone/download the repository.
+GitHub's file view does not run the viewer as a webpage.</p>
+<p>Choose <strong>Printed · 12 mm</strong> or <strong>Aluminum · ⅛″</strong>. Switching materials updates
+the rib thickness, station locations, fastener lengths, nested bill of
+materials and model-download links. Rods, spacers and connector hardware have
+independent visibility controls. Use <strong>One rib section</strong>, <strong>One slat bay</strong> or
+<strong>Connection detail</strong> to inspect the joints. Download links require the
+repository folder alongside the HTML file; viewing the assembly itself works
+from the single HTML file.</p>
+<p><img alt="One aluminum rib section" src="images/aluminum-rib-section-preview.png" /></p>
+<h2>Calculations, geometry and ray tracing</h2>
+<p><a href="docs/GEOMETRY.html">Geometry and calculations</a> documents the tubular CPC
+equations, the 12″ arc constraint, receiver/cradle dimensions, station spacing,
+spacer lengths, hole patterns and fastener stacks.</p>
+<p><img alt="Current rib and ray-trace drawing" src="rib.png" /></p>
+<p><a href="rib.svg">Download the ray diagram as SVG</a> ·
+<a href="docs/ray-trace.json">Ray coordinates and checks</a></p>
+<p>The five rays share one nearby source and each make one reflection before
+reaching the ideal circular receiver. This is a local geometry illustration.
+It is not parallel sunlight, a whole-aperture acceptance test, or a measured
+efficiency result. The ray model excludes mechanical shading, finite-length
+end losses, surface errors and thermal behavior.</p>
+<h2>Latest sketches and drawings</h2>
+<ul>
+<li><a href="sketches/reflector-arc-02.png">12″ cradle-to-tip arc definition</a>
+  (<a href="sketches/reflector-arc-02.svg">SVG</a>).</li>
+<li><a href="sketches/reflector-slats-03.png">Current reflector-support drawing 03</a>
+  (<a href="sketches/reflector-slats-03.svg">SVG</a>), generated from the v14 slat geometry.</li>
+<li><a href="sketches/reflector-slats-02.png">Earlier reflector-support concept, sketch 02</a>
+  (<a href="sketches/reflector-slats-02.svg">SVG</a>). This sketch records the support
+  arrangement before the final 12″ arc revision; use the v14 CAD and current
+  arc drawing for final geometry.</li>
+<li><a href="images/aluminum-slat-bay-preview.png">Aluminum slat-bay rendering</a> and
+  <a href="images/printed-slat-bay-preview.png">printed slat-bay rendering</a>.</li>
+</ul>
+<h2>Bill of materials</h2>
+<p>Quantities below cover one complete five-station CAD backbone. This is the
+full modeled assembly BOM; unfinished items needed for a working collector
+are listed separately below. Lengths of bolts and screws are under the head.
+Confirm actual washer/nut dimensions before buying hardware or cutting spacers.</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th style="text-align: right;">Quantity</th>
+<th>Printed option</th>
+<th>Aluminum option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identical rib half</td>
+<td style="text-align: right;">10</td>
+<td>Printed, 12 mm thick</td>
+<td>CNC aluminum, ⅛″ thick</td>
+</tr>
+<tr>
+<td>Receiver pipe</td>
+<td style="text-align: right;">1</td>
+<td>72″ long, 33.401 mm OD</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Identical formed support slat</td>
+<td style="text-align: right;">40</td>
+<td>¾″ × 1/16″ strip; 363 mm formed span</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Rib-pair hex bolt</td>
+<td style="text-align: right;">10</td>
+<td>¼″-20 × 1½″</td>
+<td>¼″-20 × ¾″</td>
+</tr>
+<tr>
+<td>Rib-pair hex nut</td>
+<td style="text-align: right;">10</td>
+<td>¼″-20</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Rib-pair flat washer</td>
+<td style="text-align: right;">20</td>
+<td>¼″ bore clearance, ⅝″ OD, modeled 1/16″ thick</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Slat pan-head screw</td>
+<td style="text-align: right;">50</td>
+<td>#8-32 × 1″</td>
+<td>#8-32 × ⅝″</td>
+</tr>
+<tr>
+<td>Slat hex nut</td>
+<td style="text-align: right;">50</td>
+<td>#8-32, modeled 0.130″ high</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Slat flat washer</td>
+<td style="text-align: right;">100</td>
+<td>#8, ⅜″ OD, modeled 0.032″ thick</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>All-thread rod</td>
+<td style="text-align: right;">2</td>
+<td>¼″-20 × 61″</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>PVC spacer tube</td>
+<td style="text-align: right;">8</td>
+<td>½″ nominal Schedule 40; cut length 359.825 mm</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Fender washer</td>
+<td style="text-align: right;">20</td>
+<td>¼″ bore clearance, 1″ OD, modeled 1/16″ thick</td>
+<td>Same</td>
+</tr>
+<tr>
+<td>Nylon-insert end lock nut</td>
+<td style="text-align: right;">4</td>
+<td>¼″-20</td>
+<td>Same</td>
+</tr>
+</tbody>
+</table>
+<p><a href="docs/bill-of-materials.csv">Download the BOM as CSV</a>.</p>
+<p>Interior stations share slat through-fasteners between adjacent bays. This
+accounts for fifty slat screws across eighty slat ends. Slat stock blank length
+is still to be determined by bend allowance and a formed sample; 363 mm is the
+formed axial span. The receiver's 26.6 mm modeled ID is illustrative, not a
+confirmed pipe specification.</p>
+<p>The working collector still needs reflector sheet/film and its attachment,
+receiver retention, external supports/tilt adjustment, and application-specific
+receiver connections. Their specifications and quantities remain open. Printed
+material, print settings, aluminum alloy and fabrication tolerances are also
+to be selected. This BOM does not yet define a complete operational collector.</p>
+<h2>STL, DXF and CAD downloads</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Printed</th>
+<th>Aluminum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rib-half STL</td>
+<td><a href="models/v14/printed/rib-half.stl">STL</a></td>
+<td><a href="models/v14/aluminum/rib-half.stl">STL</a></td>
+</tr>
+<tr>
+<td>Rib-half nominal cutting profile</td>
+<td><a href="models/v14/printed/rib-half.dxf">DXF</a></td>
+<td><a href="models/v14/aluminum/rib-half.dxf">DXF</a></td>
+</tr>
+<tr>
+<td>Rib-half editable CAD</td>
+<td><a href="models/v14/printed/rib-half.step">STEP</a></td>
+<td><a href="models/v14/aluminum/rib-half.step">STEP</a></td>
+</tr>
+<tr>
+<td>Bolted rib section</td>
+<td><a href="models/v14/printed/rib-section.step">STEP</a></td>
+<td><a href="models/v14/aluminum/rib-section.step">STEP</a></td>
+</tr>
+<tr>
+<td>Single master slat</td>
+<td><a href="models/v14/printed/reflector-slat.step">STEP</a> / <a href="models/v14/printed/reflector-slat.stl">STL</a></td>
+<td><a href="models/v14/aluminum/reflector-slat.step">STEP</a> / <a href="models/v14/aluminum/reflector-slat.stl">STL</a></td>
+</tr>
+<tr>
+<td>Ten-slat bay</td>
+<td><a href="models/v14/printed/slat-bay.step">STEP</a></td>
+<td><a href="models/v14/aluminum/slat-bay.step">STEP</a></td>
+</tr>
+<tr>
+<td>Complete backbone</td>
+<td><a href="models/v14/printed/backbone.step">STEP</a> / <a href="models/v14/printed/backbone.glb">GLB</a></td>
+<td><a href="models/v14/aluminum/backbone.step">STEP</a> / <a href="models/v14/aluminum/backbone.glb">GLB</a></td>
+</tr>
+</tbody>
+</table>
+<p>The slat STL is a shape reference for the formed metal strip. DXFs are 1:1
+millimeters with nine closed contours: one outer profile and eight holes.
+They are extracted at the STEP rib's mid-thickness to retain the nominal
+outline beneath cosmetic face edge rounding. DXF curves include splines;
+confirm CAM support. Tool/kerf compensation and edge finishing are not included.</p>
+<h2>Source and validation</h2>
+<p><a href="docs/REPRODUCING.html">Reproduction instructions</a> describe the Python generators
+and checks included here. The design uses build123d for CAD and a self-contained
+WebGL viewer. Current reports accompany the models under <code>models/v14/</code>:</p>
+<ul>
+<li>Per-option CAD/mesh, hardware and independent slat/joint validation reports.</li>
+<li><a href="models/v14/export-validation.json">Export checks</a>.</li>
+<li><a href="models/v14/dxf-validation.json">DXF round-trip checks</a>.</li>
+<li><a href="models/v14/viewer-validation.json">Browser checks</a>.</li>
+</ul>
+<p>These checks establish modeled dimensions, geometry and viewer behavior.
+Physical fit, forming accuracy, thermal behavior and structural performance
+remain untested. Further work includes one formed slat, one assembled rib
+pair, and a short connected backbone sample before a full collector build.</p></main></body></html>

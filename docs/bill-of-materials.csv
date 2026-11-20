@@ -1,0 +1,14 @@
+part,quantity,printed_option,aluminum_option,notes
+Rib half,10,12 mm printed prototype,3.175 mm aluminum,Identical half profile
+Receiver pipe,1,"1828.8 mm long, 33.401 mm OD",Same,Modeled ID 26.6 mm illustrative
+Formed support slat,40,"19.05 x 1.5875 mm strip, 363 mm formed span",Same,Flat blank length and bend allowance pending
+Rib-pair hex bolt,10,1/4-20 x 1-1/2 inch,1/4-20 x 3/4 inch,Under-head length
+Rib-pair hex nut,10,1/4-20,Same,Modeled height 5.55625 mm
+Rib-pair flat washer,20,"1/4 inch clearance, 15.875 mm OD",Same,Modeled thickness 1.5875 mm
+Slat pan-head screw,50,#8-32 x 1 inch,#8-32 x 5/8 inch,Shared at interior stations
+Slat hex nut,50,#8-32,Same,Modeled height 3.302 mm
+Slat flat washer,100,"#8 clearance, 9.525 mm OD",Same,Modeled thickness 0.8128 mm
+All-thread rod,2,1/4-20 x 1549.4 mm (61 inch),Same,Two staggered connector rows
+PVC spacer tube,8,"1/2 inch nominal Schedule 40, cut 359.825 mm",Same,"OD 21.336 mm, ID 15.7988 mm; confirm actual washers before cutting"
+Fender washer,20,"1/4 inch clearance, 25.4 mm OD",Same,Modeled thickness 1.5875 mm
+Nylon-insert lock nut,4,1/4-20,Same,Modeled height 7.9375 mm; insert included

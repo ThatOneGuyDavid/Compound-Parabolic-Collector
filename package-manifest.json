@@ -13,14 +13,19 @@
       "sha256": "26cb0560387cbfcd10105d2d4a66ae6817f4bb4f908ed1d5dbb7884955276161"
     },
     {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
       "path": "README.html",
-      "bytes": 13273,
-      "sha256": "94d04de814c17bd54a97d8412f69ca01199131ae8358b1801eecbd71eb7a4fa3"
+      "bytes": 13501,
+      "sha256": "e2caaf9f5e0d147533f97976487cefcd66a8ce15c4b9b242f1680fd1a153d864"
     },
     {
       "path": "README.md",
-      "bytes": 9308,
-      "sha256": "7a1c784976084862cd80d25117542d53baf85749735f29cf01d5a561f4d95fcc"
+      "bytes": 9506,
+      "sha256": "885338ab0cf17d98be71b5b4e452e14eb280c7f5d2481efbcab1c9170ff2c137"
     },
     {
       "path": "assembly-viewer.html",
@@ -39,13 +44,13 @@
     },
     {
       "path": "docs/REPRODUCING.html",
-      "bytes": 2910,
-      "sha256": "fd998cf21147570d268df26e00d53f0d6270bc2932c7fea99d85ca6c7757122e"
+      "bytes": 3063,
+      "sha256": "e2fd680bc5aba7f2a2795f5a730577b64688c6dd76693b63154c7d3b0f6bd169"
     },
     {
       "path": "docs/REPRODUCING.md",
-      "bytes": 1537,
-      "sha256": "2f3be879398689b5fcf9d852586194113d6c17488db52ab08916bcf90263cf59"
+      "bytes": 1657,
+      "sha256": "6455c8234aa71d64d253292f7d13c0b253c82c6eb11efb8ee82e432e44d495b4"
     },
     {
       "path": "docs/bill-of-materials.csv",
@@ -91,6 +96,11 @@
       "path": "images/printed-slat-bay-preview.png",
       "bytes": 168307,
       "sha256": "65bde4412fd067ee7f7278ed660f03fffbda46f7ab383b077bdb2118f7985c45"
+    },
+    {
+      "path": "index.html",
+      "bytes": 352,
+      "sha256": "17e7c9720c89f6553d89591ef6439a61892bc57b3e8527817038893006b81465"
     },
     {
       "path": "models/v14/aluminum/backbone.glb",

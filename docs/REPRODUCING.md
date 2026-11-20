@@ -33,5 +33,7 @@ nominal rib/receiver clearances and assembly grouping; the DXF script reimports
 its own output and checks closure, holes and sampled boundary deviation.
 
 The HTML preview is self-contained for viewing. Keep the rest of the repository
-alongside it to use its relative model-download links. This draft contains no
-live hosted-preview URL or publication configuration.
+alongside it to use its relative model-download links. The online viewer uses
+GitHub Pages, serving `main` from the repository
+root. `.nojekyll` serves the static files directly; `index.html` opens the
+viewer. The README links to its GitHub Pages URL.

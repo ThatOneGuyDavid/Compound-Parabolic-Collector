@@ -53,18 +53,21 @@ current half fits within an approximately 162.5 × 297.4 mm footprint.
 
 ## Interactive 3D preview
 
-[Download the self-contained 3D preview](assembly-viewer.html), then open the
-downloaded HTML file in a WebGL-capable browser. If GitHub displays the file
-as source, use its download button or clone/download the repository.
-GitHub's file view does not run the viewer as a webpage.
+**[Open the interactive 3D viewer online](https://thatoneguydavid.github.io/Compound-Parabolic-Collector/assembly-viewer.html)**
+
+The online viewer runs in a WebGL-capable browser with no download required.
+You can also [download the self-contained HTML viewer](assembly-viewer.html)
+for offline use. GitHub's repository file view displays HTML source; use the
+online link above to open the running viewer.
 
 Choose **Printed · 12 mm** or **Aluminum · ⅛″**. Switching materials updates
 the rib thickness, station locations, fastener lengths, nested bill of
 materials and model-download links. Rods, spacers and connector hardware have
 independent visibility controls. Use **One rib section**, **One slat bay** or
-**Connection detail** to inspect the joints. Download links require the
-repository folder alongside the HTML file; viewing the assembly itself works
-from the single HTML file.
+**Connection detail** to inspect the joints. Online model downloads work
+directly from the hosted viewer. For offline
+model downloads, keep the repository folder alongside the HTML file; viewing
+the assembly itself works from the single HTML file.
 
 ![One aluminum rib section](images/aluminum-rib-section-preview.png)
 

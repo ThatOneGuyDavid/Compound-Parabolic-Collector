@@ -1,4 +1,4 @@
-"""Current v14 support drawing, using the same row geometry as the CAD."""
+"""Current v15 support drawing, using the same row geometry as the CAD."""
 from pathlib import Path
 import html
 import math
@@ -20,7 +20,7 @@ def poly(points, fill, color='#315d6b'):
     svg.append('<polygon points="' + ' '.join(f'{x:.4f},{y:.4f}' for x,y in points) + f'" fill="{fill}" stroke="{color}" stroke-width="1.5"/>')
 def circle(x,y,r,fill='#faf8f1'):
     svg.append(f'<circle cx="{x}" cy="{y}" r="{r}" fill="{fill}" stroke="#526971" stroke-width="1.5"/>')
-text(40,48,'REFLECTOR SUPPORT — current v14 geometry — drawing 03',30)
+text(40,48,'REFLECTOR SUPPORT — current v15 geometry — drawing 03',30)
 text(40,82,'12-inch arc per side • Five tangent supports per side per bay • One identical master slat everywhere',20)
 text(40,135,'END VIEW — actual support locations',23)
 scale=1.6
@@ -81,4 +81,4 @@ text(40,958,'Physical fit and bend allowance remain untested. Optical reflector 
 svg.append('</g></svg>')
 (out/'reflector-slats-03.svg').write_text('\n'.join(svg))
 subprocess.run(['rsvg-convert','-o',str(out/'reflector-slats-03.png'),str(out/'reflector-slats-03.svg')],check=True)
-print('Created current v14 support drawing 03 from the shared slat geometry.')
+print('Created current v15 support drawing 03 from the shared slat geometry.')

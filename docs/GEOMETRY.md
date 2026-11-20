@@ -1,4 +1,4 @@
-# Geometry and calculations — v14
+# Geometry and calculations — v15
 
 All dimensions below are millimeters unless marked otherwise. Angles in the
 equations are radians. Source code: [profile_geometry.py](../src/profile_geometry.py),
@@ -99,9 +99,12 @@ the current acceptance range.
 
 Each section contains two identical halves in adjacent axial intervals:
 `[z, z+h]` and `[z+h, z+2h]`. The left half is the same part rotated into
-place. The curved rib web is 22 mm; nominal outer edge rounding is 0.8 mm.
+place. The outside top corner has a 2 mm in-plane radius, included in the CNC DXF.
+It rounds the junction of the top edge and outer back while retaining the
+reflector curve and top slat seat. The curved rib web is 22 mm; nominal outer edge rounding is 0.8 mm.
 The slat bend/tail projections fit within the rib with a conservative minimum
-back margin of approximately 1.961 mm after accounting for that rounding.
+back margin of approximately 0.150 mm at the rounded top corner and at least 1.961 mm
+at the other rows after accounting for that rounding.
 
 Each half has three 9/32″ / 7.14375 mm structural holes at
 `(-15,-45)`, `(15,-45)` and `(45,-45)`. The paired inner holes clamp the ribs;

@@ -138,6 +138,36 @@ segments=[
     arc_segment((0,0),COLLAR,relief_angle,-math.pi),
     dict(kind='line',points=[(-COLLAR,0),(-CRADLE,0)]),
 ]
+# R2 outer tip fillet, tangent to the top edge and interpolated rib back.
+TIP_RADIUS=2.0
+from scipy.interpolate import CubicSpline
+from scipy.optimize import brentq
+_tip_original_back=list(kept)
+_tip_s=[0.]
+for a,b in zip(kept,kept[1:]): _tip_s.append(_tip_s[-1]+math.dist(a,b))
+_tip_x=CubicSpline(_tip_s,[q[0] for q in kept])
+_tip_y=CubicSpline(_tip_s,[q[1] for q in kept])
+_tip_start=edge[-1]
+_tip_dir=tuple((b-a)/math.dist(_tip_start,kept[0]) for a,b in zip(_tip_start,kept[0]))
+_tip_normal=(_tip_dir[1],-_tip_dir[0])
+def _tip_center_at(t):
+    q=(float(_tip_x(t)),float(_tip_y(t)))
+    dx,dy=float(_tip_x(t,1)),float(_tip_y(t,1));ll=math.hypot(dx,dy)
+    return (q[0]+TIP_RADIUS*dy/ll,q[1]-TIP_RADIUS*dx/ll)
+def _tip_offset(t):
+    c=_tip_center_at(t)
+    return sum((v-a)*n for v,a,n in zip(c,_tip_start,_tip_normal))-TIP_RADIUS
+_tip_t=brentq(_tip_offset,0,10)
+TIP_CENTER=_tip_center_at(_tip_t)
+TIP_TOP=tuple(c-TIP_RADIUS*n for c,n in zip(TIP_CENTER,_tip_normal))
+TIP_BACK=(float(_tip_x(_tip_t)),float(_tip_y(_tip_t)))
+_tip_a=math.atan2(TIP_TOP[1]-TIP_CENTER[1],TIP_TOP[0]-TIP_CENTER[0])
+_tip_b=math.atan2(TIP_BACK[1]-TIP_CENTER[1],TIP_BACK[0]-TIP_CENTER[0])
+# Keep the circular fillet within the former corner and retain the rest of the back.
+kept=[TIP_BACK]+[q for t,q in zip(_tip_s,_tip_original_back) if t>_tip_t]
+segments[5]=dict(kind='line',points=[edge[-1],TIP_TOP])
+segments[6]=dict(kind='spline',points=kept)
+segments.insert(6,arc_segment(TIP_CENTER,TIP_RADIUS,_tip_a,_tip_b))
 outline=[]
 for segment in segments:
     points=segment_points(segment)

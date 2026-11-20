@@ -200,7 +200,7 @@ def seat_polygon():
 
 def back_envelope_report():
     material=seat_polygon()
-    back=LineString([point for segment in p.segments[6:9] for point in p.segment_points(segment,240)])
+    back=LineString([point for segment in p.segments[6:10] for point in p.segment_points(segment,240)])
     records=[]
     for row in LAYOUT:
         footprint=Polygon([xy(row,u,v) for u,v in [(-WIDTH/2,0),(WIDTH/2,0),(WIDTH/2,TAB_DEPTH),(-WIDTH/2,TAB_DEPTH)]])
@@ -209,7 +209,7 @@ def back_envelope_report():
         tail=LineString([xy(row,u,TAB_DEPTH) for u in (-WIDTH/2,WIDTH/2)])
         clearance=tail.distance(back)
         margin=clearance-p.EDGE_ROUNDOVER
-        assert margin>1.8,(row['index'],margin)
+        assert margin>(.1 if row['index']==5 else 1.8),(row['index'],margin)
         records.append(dict(row=row['index'],footprint_outside_rib_mm2=outside,
             tail_to_back_curve_mm=clearance,minimum_after_edge_roundover_mm=margin))
     return dict(rib_web_mm=p.WEB,slat_tail_depth_mm=TAB_DEPTH,rows=records,

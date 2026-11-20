@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 parser=argparse.ArgumentParser(description='Build one fixed rib material variant')
 parser.add_argument('--variant',choices=('printed','aluminum'),default='printed')
 VARIANT=parser.parse_args().variant
-OUT=ROOT/'models'/'v14'/VARIANT
+OUT=ROOT/'models'/'v15'/VARIANT
 OUT.mkdir(parents=True,exist_ok=True)
 STATIONS=5
 THICKNESS=12.0 if VARIANT=='printed' else 3.175
@@ -88,7 +88,7 @@ face=profile_face()
 base=Solid.extrude(face,(0,0,THICKNESS))
 # Round only nonfunctional front/back perimeter edges. Pipe bore, bolt
 # holes and the reflective support curves keep their nominal geometry.
-cosmetic_segments=[p.segments[i] for i in [6,7,8,9,10]]
+cosmetic_segments=[p.segments[i] for i in [6,7,8,9,10,11]]
 guide=np.array([q for segment in cosmetic_segments for q in p.segment_points(segment,400)])
 round_edges=[]
 for e in base.edges():
@@ -231,7 +231,7 @@ hardware_report['clearance_method']='Axial slices against unfilleted rib materia
 (OUT/'hardware.json').write_text(json.dumps(hardware_report,indent=2)+'\n')
 (OUT/'slats.json').write_text(json.dumps(slat_report,indent=2)+'\n')
 report=dict(
-    revision='model-v14',variant=VARIANT,material='Printed prototype' if VARIANT=='printed' else 'CNC aluminum, fixed 1/8 inch plate',units='mm',glb_units='m',rib_stations=STATIONS,identical_half_quantity=2*STATIONS,
+    revision='model-v15',variant=VARIANT,material='Printed prototype' if VARIANT=='printed' else 'CNC aluminum, fixed 1/8 inch plate',units='mm',glb_units='m',rib_stations=STATIONS,identical_half_quantity=2*STATIONS,
     backbone_length_mm=LENGTH,pipe_length_mm=LENGTH+2*OVERHANG,pipe_overhang_each_mm=OVERHANG,
     station_starts_mm=[i*PITCH for i in range(STATIONS)],station_pitch_mm=PITCH,
     rib_thickness_mm=THICKNESS,pair_thickness_mm=PAIR_THICKNESS,half_offset_mm=THICKNESS,
@@ -244,7 +244,7 @@ report=dict(
     hole_centers_per_half_mm=p.HOLES,gusset_hole_center_mm=p.GUSSET_HOLE,
     gusset_hole_outer_edge_margin_mm=p.GUSSET_BOSS_RADIUS-p.HOLE_RADIUS,
     reflection_relief=p.REFLECTION_RELIEF,rib_side_radius_mm=p.GUSSET_BOSS_RADIUS,pad_end_radius_mm=p.PAD_END_RADIUS,pad_end_center_mm=p.PAD_END_CENTER,
-    exposed_edge_roundover_mm=p.EDGE_ROUNDOVER,rounded_edges=len(round_edges),
+    outside_tip_radius_mm=p.TIP_RADIUS,exposed_edge_roundover_mm=p.EDGE_ROUNDOVER,rounded_edges=len(round_edges),
     paired_subassembly_count=STATIONS,connecting_structure='Two 1/4-20 all-thread rods with 1/2 inch nominal PVC spacers',
     bolting_hardware=f"Two 1/4-20 x {hardware_report['bolt_length_label']} inch bolts per section, washers and nuts",hardware=hardware_report,slats=slat_report,
     parts=len(parts),half_pair_overlap_mm3=pair_overlap,

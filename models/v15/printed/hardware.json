@@ -1,0 +1,111 @@
+{
+  "thread": "1/4-20 UNC",
+  "thread_diameter_mm": 6.35,
+  "thread_pitch_mm": 1.27,
+  "clearance_hole_mm": 7.14375,
+  "bolt_length_mm": 38.099999999999994,
+  "bolt_length_label": "1-1/2",
+  "bolt_stack_mm": 32.73125,
+  "bolt_protrusion_mm": 5.3687499999999915,
+  "bolt_exposed_threads": 4.227362204724403,
+  "rod_length_mm": 1549.3999999999999,
+  "rod_start_mm": -12.699999999999932,
+  "spacer_length_mm": 359.825,
+  "spacer_OD_mm": 21.336,
+  "spacer_ID_mm": 15.7988,
+  "washer_thickness_mm": 1.5875,
+  "spacer_washer_OD_mm": 25.4,
+  "spacers": [
+    {
+      "row": "right",
+      "bay": 1,
+      "start": 13.5875,
+      "end": 373.4125,
+      "length": 359.825
+    },
+    {
+      "row": "right",
+      "bay": 2,
+      "start": 388.5875,
+      "end": 748.4125,
+      "length": 359.825
+    },
+    {
+      "row": "right",
+      "bay": 3,
+      "start": 763.5875,
+      "end": 1123.4125,
+      "length": 359.825
+    },
+    {
+      "row": "right",
+      "bay": 4,
+      "start": 1138.5875,
+      "end": 1498.4125,
+      "length": 359.825
+    },
+    {
+      "row": "left",
+      "bay": 1,
+      "start": 25.5875,
+      "end": 385.4125,
+      "length": 359.825
+    },
+    {
+      "row": "left",
+      "bay": 2,
+      "start": 400.5875,
+      "end": 760.4125,
+      "length": 359.825
+    },
+    {
+      "row": "left",
+      "bay": 3,
+      "start": 775.5875,
+      "end": 1135.4125,
+      "length": 359.825
+    },
+    {
+      "row": "left",
+      "bay": 4,
+      "start": 1150.5875,
+      "end": 1510.4125,
+      "length": 359.825
+    }
+  ],
+  "bom": [
+    {
+      "item": "1/4-20 x 1-1/2 inch hex bolt",
+      "quantity": 10
+    },
+    {
+      "item": "1/4-20 hex nut",
+      "quantity": 10
+    },
+    {
+      "item": "1/4 inch flat washer, 5/8 inch OD",
+      "quantity": 20
+    },
+    {
+      "item": "1/4-20 all-thread, 61 inch length",
+      "quantity": 2
+    },
+    {
+      "item": "1/2 inch nominal Schedule 40 PVC spacer",
+      "quantity": 8,
+      "cut_length_mm": 359.825
+    },
+    {
+      "item": "1/4 inch fender washer, 1 inch OD",
+      "quantity": 20
+    },
+    {
+      "item": "1/4-20 nylon-insert lock nut",
+      "quantity": 4
+    }
+  ],
+  "thread_representation": "Nominal envelopes; helical threads omitted",
+  "dimensions": "Provisional envelopes; measure purchased washers and PVC before cutting spacers",
+  "rib_and_receiver_interference_checks": 62,
+  "clearance_method": "Axial slices against unfilleted rib material buffered 0.02 mm; nominal fastener envelopes"
+}

@@ -5,7 +5,7 @@ import json
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'models'/'v14'
+OUT=ROOT/'models'/'v15'
 errors=[]
 checks=[]
 with sync_playwright() as p:
@@ -107,7 +107,7 @@ with sync_playwright() as p:
     for link in page.locator('.downloads a').evaluate_all('(nodes)=>nodes.map(n=>n.getAttribute("href"))'):
         assert (ROOT/link).is_file(),link
     assert page.evaluate('config.slats.rib_back_envelope.rib_web_mm')==22
-    assert page.evaluate('config.slats.rib_back_envelope.minimum_proud_mm')>1.8
+    assert page.evaluate('config.slats.rib_back_envelope.minimum_proud_mm')>.1
     assert page.evaluate('config.slats.fastener_thread')=='#8-32 UNC'
     assert abs(page.evaluate('config.slats.slat_hole_diameter_mm')-4.7625)<1e-9
     assert page.evaluate('config.hardware.thread')=='1/4-20 UNC'

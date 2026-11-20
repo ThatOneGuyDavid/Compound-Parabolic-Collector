@@ -16,7 +16,7 @@ this project's implementation. Credit does not imply his review or endorsement.
 
 ## Current design
 
-**v14 is a CAD design draft.** The geometry and exported models have been
+**v15 is a CAD design draft.** The geometry and exported models have been
 checked; the assembly has not yet been physically built or tested. The printed
 option is for fit prototyping. Aluminum is the intended later rib material.
 Reflector material and attachment, receiver retention and external supports
@@ -36,6 +36,19 @@ remain to be designed.
 - A nominal transverse acceptance half-angle of ±28.62976°, calculated from
   the chosen receiver and reflector arc.
 
+### v15 update: rounded outer rib tips
+
+The outer top corner now has a 2 mm radius to remove the sharp plan-view
+point, especially for the CNC aluminum ribs. Both material options use the
+same revised outline, including the DXF cutting files. The top slat tab still
+fits inside the rib; the reflector curve, hole locations and master slat are
+unchanged. Plate edges still need normal deburring during fabrication.
+
+CAD, mesh, slat-clearance, DXF round-trip and browser checks pass. The main
+image now shows only the model and links to the interactive online viewer.
+
+[View the R2 outer-tip detail](images/tip-radius-detail.png).
+
 ## Printed and aluminum build options
 
 | Dimension or hardware | Printed prototype | CNC aluminum |
@@ -50,7 +63,8 @@ remain to be designed.
 
 The slats and PVC spacers keep the same length in both options. Thinner ribs
 therefore shorten the aluminum assembly and leave more of the centered pipe
-and rods exposed. Both options use the same transverse rib profile. The
+and rods exposed. Both options use the same transverse rib profile, with a 2 mm radius on the
+outer top corner to remove the sharp tip. The
 current half fits within an approximately 162.5 × 297.4 mm footprint.
 
 ## Interactive 3D preview
@@ -95,10 +109,10 @@ end losses, surface errors and thermal behavior.
 - [12″ cradle-to-tip arc definition](sketches/reflector-arc-02.png)
   ([SVG](sketches/reflector-arc-02.svg)).
 - [Current reflector-support drawing 03](sketches/reflector-slats-03.png)
-  ([SVG](sketches/reflector-slats-03.svg)), generated from the v14 slat geometry.
+  ([SVG](sketches/reflector-slats-03.svg)), generated from the v15 slat geometry.
 - [Earlier reflector-support concept, sketch 02](sketches/reflector-slats-02.png)
   ([SVG](sketches/reflector-slats-02.svg)). This sketch records the support
-  arrangement before the final 12″ arc revision; use the v14 CAD and current
+  arrangement before the final 12″ arc revision; use the v15 CAD and current
   arc drawing for final geometry.
 - [Aluminum slat-bay rendering](images/aluminum-slat-bay-preview.png) and
   [printed slat-bay rendering](images/printed-slat-bay-preview.png).
@@ -144,13 +158,13 @@ to be selected. This BOM does not yet define a complete operational collector.
 
 | File | Printed | Aluminum |
 | --- | --- | --- |
-| Rib-half STL | [STL](models/v14/printed/rib-half.stl) | [STL](models/v14/aluminum/rib-half.stl) |
-| Rib-half nominal cutting profile | [DXF](models/v14/printed/rib-half.dxf) | [DXF](models/v14/aluminum/rib-half.dxf) |
-| Rib-half editable CAD | [STEP](models/v14/printed/rib-half.step) | [STEP](models/v14/aluminum/rib-half.step) |
-| Bolted rib section | [STEP](models/v14/printed/rib-section.step) | [STEP](models/v14/aluminum/rib-section.step) |
-| Single master slat | [STEP](models/v14/printed/reflector-slat.step) / [STL](models/v14/printed/reflector-slat.stl) | [STEP](models/v14/aluminum/reflector-slat.step) / [STL](models/v14/aluminum/reflector-slat.stl) |
-| Ten-slat bay | [STEP](models/v14/printed/slat-bay.step) | [STEP](models/v14/aluminum/slat-bay.step) |
-| Complete backbone | [STEP](models/v14/printed/backbone.step) / [GLB](models/v14/printed/backbone.glb) | [STEP](models/v14/aluminum/backbone.step) / [GLB](models/v14/aluminum/backbone.glb) |
+| Rib-half STL | [STL](models/v15/printed/rib-half.stl) | [STL](models/v15/aluminum/rib-half.stl) |
+| Rib-half nominal cutting profile | [DXF](models/v15/printed/rib-half.dxf) | [DXF](models/v15/aluminum/rib-half.dxf) |
+| Rib-half editable CAD | [STEP](models/v15/printed/rib-half.step) | [STEP](models/v15/aluminum/rib-half.step) |
+| Bolted rib section | [STEP](models/v15/printed/rib-section.step) | [STEP](models/v15/aluminum/rib-section.step) |
+| Single master slat | [STEP](models/v15/printed/reflector-slat.step) / [STL](models/v15/printed/reflector-slat.stl) | [STEP](models/v15/aluminum/reflector-slat.step) / [STL](models/v15/aluminum/reflector-slat.stl) |
+| Ten-slat bay | [STEP](models/v15/printed/slat-bay.step) | [STEP](models/v15/aluminum/slat-bay.step) |
+| Complete backbone | [STEP](models/v15/printed/backbone.step) / [GLB](models/v15/printed/backbone.glb) | [STEP](models/v15/aluminum/backbone.step) / [GLB](models/v15/aluminum/backbone.glb) |
 
 The slat STL is a shape reference for the formed metal strip. DXFs are 1:1
 millimeters with nine closed contours: one outer profile and eight holes.
@@ -162,12 +176,12 @@ confirm CAM support. Tool/kerf compensation and edge finishing are not included.
 
 [Reproduction instructions](docs/REPRODUCING.md) describe the Python generators
 and checks included here. The design uses build123d for CAD and a self-contained
-WebGL viewer. Current reports accompany the models under `models/v14/`:
+WebGL viewer. Current reports accompany the models under `models/v15/`:
 
 - Per-option CAD/mesh, hardware and independent slat/joint validation reports.
-- [Export checks](models/v14/export-validation.json).
-- [DXF round-trip checks](models/v14/dxf-validation.json).
-- [Browser checks](models/v14/viewer-validation.json).
+- [Export checks](models/v15/export-validation.json).
+- [DXF round-trip checks](models/v15/dxf-validation.json).
+- [Browser checks](models/v15/viewer-validation.json).
 
 These checks establish modeled dimensions, geometry and viewer behavior.
 Physical fit, forming accuracy, thermal behavior and structural performance

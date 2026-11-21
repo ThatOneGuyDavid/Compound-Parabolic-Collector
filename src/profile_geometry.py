@@ -33,8 +33,49 @@ def acceptance_for_arc(target):
     return (lo+hi)/2
 
 
-ANGLE=acceptance_for_arc(REFLECTOR_ARC_MM)
+OLD_ANGLE=acceptance_for_arc(REFLECTOR_ARC_MM)
+CRADLE_FILLET_RADIUS=6.0
+
+
+def _lower_point(t):
+    return R*math.sin(t)-R*t*math.cos(t),-R*math.cos(t)-R*t*math.sin(t)
+
+
+def _fillet_center(t):
+    x,y=_lower_point(t)
+    return x+CRADLE_FILLET_RADIUS*math.cos(t),y+CRADLE_FILLET_RADIUS*math.sin(t)
+
+
+def _fillet_error(t):
+    return math.hypot(*_fillet_center(t))-(COLLAR+CRADLE_FILLET_RADIUS)
+
+
+_lo,_hi=JOIN,math.pi/2+OLD_ANGLE
+assert _fillet_error(_lo)<0<_fillet_error(_hi)
+for _ in range(55):
+    _mid=(_lo+_hi)/2
+    if _fillet_error(_mid)>0:_hi=_mid
+    else:_lo=_mid
+REFLECTOR_START=(_lo+_hi)/2
+FILLET_CENTER=_fillet_center(REFLECTOR_START)
+FILLET_REFLECTOR_TANGENCY=_lower_point(REFLECTOR_START)
+FILLET_CRADLE_TANGENCY=tuple(v*COLLAR/(COLLAR+CRADLE_FILLET_RADIUS) for v in FILLET_CENTER)
+FILLET_CRADLE_ANGLE=math.atan2(FILLET_CRADLE_TANGENCY[1],FILLET_CRADLE_TANGENCY[0])
+FILLET_START_ANGLE=math.atan2(FILLET_CRADLE_TANGENCY[1]-FILLET_CENTER[1],FILLET_CRADLE_TANGENCY[0]-FILLET_CENTER[0])
+FILLET_END_ANGLE=math.atan2(FILLET_REFLECTOR_TANGENCY[1]-FILLET_CENTER[1],FILLET_REFLECTOR_TANGENCY[0]-FILLET_CENTER[0])
+while FILLET_END_ANGLE<=FILLET_START_ANGLE:FILLET_END_ANGLE+=2*math.pi
+assert math.radians(130)<FILLET_END_ANGLE-FILLET_START_ANGLE<math.radians(160)
+
+
+REMOVED_LOWER_ARC_MM=.5*R*(REFLECTOR_START**2-JOIN**2)
+ARC_TO_OLD_TOP_MM=REFLECTOR_ARC_MM-REMOVED_LOWER_ARC_MM
+# Solve the CPC acceptance parameter again so the *natural* upper endpoint
+# retains a vertical tangent and B-to-top, rather than old join-to-top, is 12 in.
+ANGLE=acceptance_for_arc(REFLECTOR_ARC_MM+REMOVED_LOWER_ARC_MM)
+TRANSITION=math.pi/2+ANGLE
 END=1.5*math.pi-ANGLE
+assert REFLECTOR_START<TRANSITION
+assert abs(reflector_arc_for_angle(ANGLE)-REMOVED_LOWER_ARC_MM-REFLECTOR_ARC_MM)<1e-7
 PAD_HALF=30.0
 PAD_BOTTOM=-62.0
 PAD_TOP=-28.0
@@ -82,7 +123,7 @@ def segment_points(segment,n=80):
     raise ValueError(kind)
 
 
-edge=curve(JOIN,END)
+edge=curve(REFLECTOR_START,END)
 lower=curve(0,JOIN,250)
 back=[]
 for i,(x,y) in enumerate(edge):
@@ -104,10 +145,10 @@ boss_start=beta-math.acos(GUSSET_BOSS_RADIUS/math.dist(anchor,GUSSET_HOLE))
 boss_end=-math.pi/2
 boss_p1=arc_point(GUSSET_HOLE,GUSSET_BOSS_RADIUS,boss_start)
 boss_p2=arc_point(GUSSET_HOLE,GUSSET_BOSS_RADIUS,boss_end)
-join_angle=math.atan2(edge[0][1],edge[0][0])
+join_angle=FILLET_CRADLE_ANGLE
 relief_arc_start=(-14.0,-math.sqrt(COLLAR**2-14**2))
 relief_angle=math.atan2(relief_arc_start[1],relief_arc_start[0])
-transition=math.pi/2+ANGLE
+transition=TRANSITION
 # Tangent-aligned blends remove the visible kinks at the gusset shoulder
 # and where its rounded toe meets the mounting-pad bottom.
 dx,dy=anchor[0]-kept[-2][0],anchor[1]-kept[-2][1]
@@ -124,7 +165,8 @@ segments=[
     arc_segment((0,0),CRADLE,math.pi,2*math.pi),
     dict(kind='line',points=[(CRADLE,0),(COLLAR,0)]),
     arc_segment((0,0),COLLAR,0,join_angle),
-    dict(kind='spline',points=curve(JOIN,transition,80)),
+    arc_segment(FILLET_CENTER,CRADLE_FILLET_RADIUS,FILLET_START_ANGLE,FILLET_END_ANGLE),
+    dict(kind='spline',points=curve(REFLECTOR_START,transition,80)),
     dict(kind='spline',points=curve(transition,END,120)),
     dict(kind='line',points=[edge[-1],kept[0]]),
     dict(kind='spline',points=kept),
@@ -165,9 +207,9 @@ _tip_a=math.atan2(TIP_TOP[1]-TIP_CENTER[1],TIP_TOP[0]-TIP_CENTER[0])
 _tip_b=math.atan2(TIP_BACK[1]-TIP_CENTER[1],TIP_BACK[0]-TIP_CENTER[0])
 # Keep the circular fillet within the former corner and retain the rest of the back.
 kept=[TIP_BACK]+[q for t,q in zip(_tip_s,_tip_original_back) if t>_tip_t]
-segments[5]=dict(kind='line',points=[edge[-1],TIP_TOP])
-segments[6]=dict(kind='spline',points=kept)
-segments.insert(6,arc_segment(TIP_CENTER,TIP_RADIUS,_tip_a,_tip_b))
+segments[6]=dict(kind='line',points=[edge[-1],TIP_TOP])
+segments[7]=dict(kind='spline',points=kept)
+segments.insert(7,arc_segment(TIP_CENTER,TIP_RADIUS,_tip_a,_tip_b))
 outline=[]
 for segment in segments:
     points=segment_points(segment)

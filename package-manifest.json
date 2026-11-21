@@ -1,8 +1,8 @@
 {
-  "model": "v15",
+  "model": "v16",
   "publication": "Local draft only",
   "repository": "https://github.com/ThatOneGuyDavid/Compound-Parabolic-Collector",
-  "local_markdown_links_checked": 45,
+  "local_markdown_links_checked": 48,
   "physical_bom_items": 325,
   "modeled_parts": 329,
   "note": "Four locknut inserts are separate model parts, included in the four physical locknuts",
@@ -19,38 +19,38 @@
     },
     {
       "path": "README.html",
-      "bytes": 14483,
-      "sha256": "1e81c1cdb22a7647a84cb5451e819e4edf689f2319a85b41a0994e0e0e5ce2c8"
+      "bytes": 15323,
+      "sha256": "3d8580a983a87ffaf0ac4da03c683ae822c1a39b0f46e36e8f412f3785d081fe"
     },
     {
       "path": "README.md",
-      "bytes": 10427,
-      "sha256": "02578f513381fe5ee793f1a4f702f9e6571d598581dfa2f6836c95c2c984acaa"
+      "bytes": 11201,
+      "sha256": "bd525f28ebdbf17f6a4a396b9f5677bd2e1113792511b4ed94cbb67948341804"
     },
     {
       "path": "assembly-viewer.html",
-      "bytes": 62080551,
-      "sha256": "1a63320560968244f76ee8b12ea2bd303dd0c3cd7b45a032bc2e4e0920967b8f"
+      "bytes": 64542333,
+      "sha256": "af547d8799ef1e38c22cd0fd5754087dbbb953457323d9e76e54ca96a3fc5e39"
     },
     {
       "path": "docs/GEOMETRY.html",
-      "bytes": 10103,
-      "sha256": "88e7f696955bced066da7f0a24093e0d97c81dc885c296f332acbf2d8d56e893"
+      "bytes": 10527,
+      "sha256": "dac6b5958a929b4f7e62aa73ef2b125addf260c1407599090638c18d99b6d69f"
     },
     {
       "path": "docs/GEOMETRY.md",
-      "bytes": 7271,
-      "sha256": "c88bb702776f54d8fccc798be2c6effbf2d110cbdef373848baf177147195479"
+      "bytes": 7676,
+      "sha256": "7a92e823f644184b2648108f586f79e4773e1cf6a4b0f2c0d87e1b63d3ad09c7"
     },
     {
       "path": "docs/REPRODUCING.html",
       "bytes": 3063,
-      "sha256": "100e0c8355204ff2ad6466c7886bdce526c8958bbf9d79a78a26f68dbd1f2f79"
+      "sha256": "761f530447aba71d1117169df4ba334500e875a217e80308969c20a6366548b1"
     },
     {
       "path": "docs/REPRODUCING.md",
       "bytes": 1657,
-      "sha256": "0628bfe087224fdc55135e462fe6096b73dea7b465794e7fedc4d03568668e08"
+      "sha256": "ec7178d249d6ede4d8f426c3a30214b1b4146cf65cf4e3013b27605115fbf8d4"
     },
     {
       "path": "docs/bill-of-materials.csv",
@@ -59,48 +59,48 @@
     },
     {
       "path": "docs/ray-trace.json",
-      "bytes": 2317,
-      "sha256": "7c48cd4879594cdc2f3e27515e314b1a5201d7a99298767dd97c80737a27687e"
+      "bytes": 2332,
+      "sha256": "a91c7cbe56f43e77f7ad970fb6a2a5ac431e0692ef57b0503c807dc928d44662"
     },
     {
       "path": "images/aluminum-backbone-model.png",
-      "bytes": 76717,
-      "sha256": "885b7163d5fe278dd986a19bfd9c611fa7ce444606c55950583856420d0f4a38"
+      "bytes": 78768,
+      "sha256": "1e197e29928cea292a88f6cf9684e8585aaf0deb063001f8fe8ea10711f74580"
     },
     {
       "path": "images/aluminum-backbone-preview.png",
-      "bytes": 145013,
-      "sha256": "f652cad99f15407653442783f417bf64a1ef0fce2277ae2035f83afae20244d8"
+      "bytes": 147344,
+      "sha256": "ee24314fb6fece47e4077d1971616dc2f0f77a2fa752ca3bb826193b1109e5a1"
     },
     {
       "path": "images/aluminum-rib-section-preview.png",
-      "bytes": 119502,
-      "sha256": "bf842d08d5f2e745b8caf6a054eb8eef304a7cc754c56d2e8154318016faf729"
+      "bytes": 117390,
+      "sha256": "293c698079754a5d972937a5858ef704888491d4bd14de2069e68e63e8f818c6"
     },
     {
       "path": "images/aluminum-slat-bay-preview.png",
-      "bytes": 162388,
-      "sha256": "4560f0f9c26290b01b8a765f887da2313a22855485a72c470fc72113648bab3e"
+      "bytes": 159586,
+      "sha256": "32fc86a75f86db17eb9dd97207916ddd2328b52025ed4cc602304cd94956c6a6"
     },
     {
       "path": "images/printed-backbone-preview.png",
-      "bytes": 153482,
-      "sha256": "3c6506651990df06320d13224a83dd6af29fc312a6e313110ced08cacb001e2a"
+      "bytes": 156608,
+      "sha256": "19d4de3aa994cb841a619f76a95cacadaea2dfb806d1c31480a81aad37a8b3cf"
     },
     {
       "path": "images/printed-hardware-preview.png",
-      "bytes": 204106,
-      "sha256": "6a6086607482b3a817f793633be025715be434f26fbf782932005062ef8869c0"
+      "bytes": 207780,
+      "sha256": "f606556aff408aff03ce14a990d3096a5c6afdab7cebfffc19e5eaae69e9b327"
     },
     {
       "path": "images/printed-rib-section-preview.png",
-      "bytes": 126069,
-      "sha256": "124e0485a4b0302199c054b9a3d8fe613c41ac26144576c1593dab3ae010ac29"
+      "bytes": 123236,
+      "sha256": "1192d99078b46ac2a13ba2c55d47147aa3a3c93e2edabd3a75775628655851db"
     },
     {
       "path": "images/printed-slat-bay-preview.png",
-      "bytes": 169512,
-      "sha256": "cdfa05852e3d30fed4365d69d9527dcf6a3841f44c44fe9c0724f307530dece7"
+      "bytes": 167273,
+      "sha256": "7a6f3a11e5c333359adab3083d5437a2ff4275bd325dd41a1a6042c357098e18"
     },
     {
       "path": "images/tip-radius-detail.png",
@@ -453,19 +453,184 @@
       "sha256": "d41e092a7ba236321b3036e4f8c8b0efa2d49605ce054a6011a8d1d86b503db5"
     },
     {
+      "path": "models/v16/aluminum/backbone.glb",
+      "bytes": 14556560,
+      "sha256": "2cb720299df2525f3e49207b525fb2bbec1d1cd760fb4d7d16e0e96b82c4f990"
+    },
+    {
+      "path": "models/v16/aluminum/backbone.step",
+      "bytes": 5355883,
+      "sha256": "300711fc5d3de103dbf573cc2039da4884d7f7c8a7287e6f41bf48f08c1374b3"
+    },
+    {
+      "path": "models/v16/aluminum/hardware.json",
+      "bytes": 2516,
+      "sha256": "986d227753c7320d98e7ac016df7eba649127872afa13c826e61685dc874040c"
+    },
+    {
+      "path": "models/v16/aluminum/reflector-slat.step",
+      "bytes": 55627,
+      "sha256": "8090c9b9bc63033705bf48e69a2757f4390a02e6cbcaedd3d40523ff450415a1"
+    },
+    {
+      "path": "models/v16/aluminum/reflector-slat.stl",
+      "bytes": 77884,
+      "sha256": "dbbfd470c9746d9bbd910917eabf0f39124f17658c8edde055dd83e339ff681b"
+    },
+    {
+      "path": "models/v16/aluminum/rib-half.dxf",
+      "bytes": 27855,
+      "sha256": "1cb4fe178677aa92e160ea92b0c8ee264922061729f745ca0b7bef4ea7c70f39"
+    },
+    {
+      "path": "models/v16/aluminum/rib-half.step",
+      "bytes": 809604,
+      "sha256": "aee36422417a04ec715919f9745cb34177607efd4efa4fcd59912f7e1e4ad5e2"
+    },
+    {
+      "path": "models/v16/aluminum/rib-half.stl",
+      "bytes": 6667984,
+      "sha256": "ae2d93f2493484a4e2ad6e4adb772ce116e91432ca68dd13359d584f19ede013"
+    },
+    {
+      "path": "models/v16/aluminum/rib-section.step",
+      "bytes": 1557532,
+      "sha256": "a9896c98efa2fe61aed9ff8b146f067042471ea0d44ff8e3c08721b360b0b645"
+    },
+    {
+      "path": "models/v16/aluminum/slat-bay.step",
+      "bytes": 63345,
+      "sha256": "a9f973c2e0e2e6e44e73620270c4fa49671f38590af97559255e87b220a01e13"
+    },
+    {
+      "path": "models/v16/aluminum/slat-validation.json",
+      "bytes": 2593,
+      "sha256": "f5b167eea4f012613196bb7a3f198bf4e7a88eb50c245cc99e06d32d071c2d7b"
+    },
+    {
+      "path": "models/v16/aluminum/slats.json",
+      "bytes": 4894,
+      "sha256": "ce54284b83aef362d71fa126aca9ecef2d8458e1edcc5434aa103fda4bb73d47"
+    },
+    {
+      "path": "models/v16/aluminum/validation.json",
+      "bytes": 11501,
+      "sha256": "a4f797bdf34931b4d587528db8471926d186cc5bab14df8b5bfcfe1d8af76624"
+    },
+    {
+      "path": "models/v16/dxf-validation.json",
+      "bytes": 1162,
+      "sha256": "6e34db3e494ae02a754bb2a2a9e9283e32b43abbc0d918566472d548b0ef5e37"
+    },
+    {
+      "path": "models/v16/export-validation.json",
+      "bytes": 794,
+      "sha256": "0608222e31f3eb8f58561634aca61b66415e28328c4145d99bf9ad280d6c5240"
+    },
+    {
+      "path": "models/v16/printed/backbone.glb",
+      "bytes": 14735596,
+      "sha256": "eb2a284415ae9ce3cc4e9616e1963a65b6bb31bb92d043df7bcff6e43e32aa2f"
+    },
+    {
+      "path": "models/v16/printed/backbone.step",
+      "bytes": 5353354,
+      "sha256": "35a9f25c7b06bdf3df9082b93dea8aeb5906626f29f89d14e1f52bf9491ca092"
+    },
+    {
+      "path": "models/v16/printed/hardware.json",
+      "bytes": 2486,
+      "sha256": "d31c19755cc80d69e61b0b2a3f6c355b029947cad18a68e6434cad340400b194"
+    },
+    {
+      "path": "models/v16/printed/reflector-slat.step",
+      "bytes": 55627,
+      "sha256": "4eceffb5ac0ed62134411c12592f499627e600c9a026471706c3ff3e356c960a"
+    },
+    {
+      "path": "models/v16/printed/reflector-slat.stl",
+      "bytes": 77884,
+      "sha256": "dbbfd470c9746d9bbd910917eabf0f39124f17658c8edde055dd83e339ff681b"
+    },
+    {
+      "path": "models/v16/printed/rib-half.dxf",
+      "bytes": 27854,
+      "sha256": "43905f6fba716af7d3bb205ec2a60a72a1c6563e00caea5325a86a77101908ac"
+    },
+    {
+      "path": "models/v16/printed/rib-half.step",
+      "bytes": 807671,
+      "sha256": "5698994947331a5a448e8e6fa9041ebec06b1b3d074f9af1975594162f9fc541"
+    },
+    {
+      "path": "models/v16/printed/rib-half.stl",
+      "bytes": 6779584,
+      "sha256": "80d79fbadbd5ac3721a3985ce176357f6d06f979ad128294f94ee67439814215"
+    },
+    {
+      "path": "models/v16/printed/rib-section.step",
+      "bytes": 1556128,
+      "sha256": "ee3bc31409cd1b05250b62975cfad9f3ed2033afd34a4d3c1fee9b06bc6d25fd"
+    },
+    {
+      "path": "models/v16/printed/slat-bay.step",
+      "bytes": 63325,
+      "sha256": "6f29cefa11c2e8cb6306fb5849915111a0edd6b5063ab75bf6e41f1ffbd46b02"
+    },
+    {
+      "path": "models/v16/printed/slat-validation.json",
+      "bytes": 2593,
+      "sha256": "f5b167eea4f012613196bb7a3f198bf4e7a88eb50c245cc99e06d32d071c2d7b"
+    },
+    {
+      "path": "models/v16/printed/slats.json",
+      "bytes": 4890,
+      "sha256": "c29a7f499ae6d6e170fc617f5fb17df1d4c1d220a362f932637e636b29e2fb5d"
+    },
+    {
+      "path": "models/v16/printed/validation.json",
+      "bytes": 11418,
+      "sha256": "41a2c9755458b5d74c279bfd033ae1a3180cce6db7f244792c6d2e5d4b4859ae"
+    },
+    {
+      "path": "models/v16/variants.json",
+      "bytes": 647,
+      "sha256": "307be9810d9a9e4ccaa90fcd6cc287743125abc29bc6e8d7f1b53a4a67165857"
+    },
+    {
+      "path": "models/v16/viewer-validation.json",
+      "bytes": 1185,
+      "sha256": "d41e092a7ba236321b3036e4f8c8b0efa2d49605ce054a6011a8d1d86b503db5"
+    },
+    {
       "path": "rib.png",
-      "bytes": 254107,
-      "sha256": "bc6032bfa3415fa647363d96d82fa8a6dbf0e25be32d318975768c9c9e1f252d"
+      "bytes": 250321,
+      "sha256": "81a8c11ce090c005975a16ed7d525aaf18f5bb2498e00d2c69fd88d0dad3cb89"
     },
     {
       "path": "rib.svg",
-      "bytes": 169620,
-      "sha256": "095ca69bc9a73335ac9cc7d8aac44ceeaeeaa2afd7df17d3fb2f19f4d3fd89e9"
+      "bytes": 183370,
+      "sha256": "608894d086c3cd9af2dcbabe05cde5b7a4484c7fbe18f3805d42bb5659f0914f"
+    },
+    {
+      "path": "sketches/cradle-reflector-radius-sketch.png",
+      "bytes": 99947,
+      "sha256": "3b0653dba3ad16fb05a1f9c491f8aff31c4978610c95d29553a9b2661121c659"
+    },
+    {
+      "path": "sketches/cradle-reflector-radius-sketch.svg",
+      "bytes": 19093,
+      "sha256": "aeec9ec48ed6ae0bf1981e0065a2fccc288522c4484775dba0cfa922284c7273"
     },
     {
       "path": "sketches/draw_slats_03.py",
       "bytes": 4651,
       "sha256": "611f24b9a04f4b4a5ca4275349c28776f69f988acf2d57fc29e2f94f1b1c3d4a"
+    },
+    {
+      "path": "sketches/draw_slats_04.py",
+      "bytes": 4669,
+      "sha256": "0e84c72f82608c4e9483af4ddb1d7f94ddbb31720de45842c51cc7ee198e7967"
     },
     {
       "path": "sketches/reflector-arc-02.png",
@@ -476,6 +641,16 @@
       "path": "sketches/reflector-arc-02.svg",
       "bytes": 114688,
       "sha256": "d0779f82c4211b6ef03b0b2eceb0a452638e6a6843b361ef703f27ed97edaa56"
+    },
+    {
+      "path": "sketches/reflector-arc-from-radius-sketch.png",
+      "bytes": 113470,
+      "sha256": "4647f7fcd6afcf648698e27ac6bb0925b1fecf16a67d9a0c1558dc36cfee6c98"
+    },
+    {
+      "path": "sketches/reflector-arc-from-radius-sketch.svg",
+      "bytes": 26162,
+      "sha256": "0340a8bc45e76e70456424840e4a47a581162df1261ce2fe6f37c995f0be13c4"
     },
     {
       "path": "sketches/reflector-slats-02.png",
@@ -498,14 +673,24 @@
       "sha256": "e58782217c651db95c1267f75b5a9fb3123faf22b9981af22cecb394dc1342b0"
     },
     {
+      "path": "sketches/reflector-slats-04.png",
+      "bytes": 250328,
+      "sha256": "74bb03e59d24c485deff1ae4d5aa799218ef809631366237e90425d8c5d88442"
+    },
+    {
+      "path": "sketches/reflector-slats-04.svg",
+      "bytes": 56594,
+      "sha256": "d6922a281fb2e888d295b3cb83a043d8590fe5830543c8377d6fe5bec9de7bfc"
+    },
+    {
       "path": "src/build_model.py",
-      "bytes": 13946,
-      "sha256": "f4c53526e7ce68fea040736325d1633e9587f1b7b2e34c37890b51d175f7416a"
+      "bytes": 14208,
+      "sha256": "43433685d3377e9669d520cb0cc31d96838019695192701c61297ae5c5806448"
     },
     {
       "path": "src/build_viewer.py",
       "bytes": 2709,
-      "sha256": "b6bcb3ddbceb649845ffa615be72172ddd7eca00d0969afe74f9b5b3dd471dbe"
+      "sha256": "75b00c28301dc653a3d75ce4df519aabfe7cf2bebf09423f6e26a66131f85b79"
     },
     {
       "path": "src/check_hardware_geometry.py",
@@ -514,18 +699,18 @@
     },
     {
       "path": "src/check_viewer.py",
-      "bytes": 13064,
-      "sha256": "8a1760e6b9e0c81e3fdaefec96c2090081d617d002908ba9f6c13bc7cd36e5fa"
+      "bytes": 13406,
+      "sha256": "7071fbf1e23f9dca2e67dff4d3e3e144932bcb15b0775f1cd5c920de8a7bc0e2"
     },
     {
       "path": "src/draw_rib.py",
-      "bytes": 9031,
-      "sha256": "89840ff39ae8fa0f073a4d59557a372edbda4e6173b0505fbe52d7e88ffe047c"
+      "bytes": 9055,
+      "sha256": "5f405254d8cca3a1665d5e61fb9237875060c452e59dffbe58731387fcb7ad98"
     },
     {
       "path": "src/export_rib_dxf.py",
-      "bytes": 2856,
-      "sha256": "e999b6949c082cacf6a396c25d155ab1ef988990ed0bdfd4c79611c71a40c12e"
+      "bytes": 2974,
+      "sha256": "693a3548045e9c39b07b76515fce9a6ca4abd33ecdb9869b48af7330ad98190a"
     },
     {
       "path": "src/hardware_geometry.py",
@@ -534,8 +719,8 @@
     },
     {
       "path": "src/profile_geometry.py",
-      "bytes": 7256,
-      "sha256": "d7c838b0c71e08f71977f868fb8fcd55dd3ea92b4ea0a30feac6e0264624876a"
+      "bytes": 9052,
+      "sha256": "dda8ba4cce940dd42bdd645b1695da60db9a038d538d84099dfe18990390d1fe"
     },
     {
       "path": "src/requirements-model.txt",
@@ -545,12 +730,12 @@
     {
       "path": "src/slat_geometry.py",
       "bytes": 10521,
-      "sha256": "aa1b2172adf4fc7aa01f6b6ef0d605d0e1e7bb673b64afecc5cdf43d92a4958c"
+      "sha256": "1af42f380dda5a392cda280633786666dc91ca92cc42ab6fd0427103744d3605"
     },
     {
       "path": "src/viewer-template.html",
-      "bytes": 16489,
-      "sha256": "af60fc8805a584432d8d3269b09fcdb1e510c3e6df00e822cddccba8fb4394aa"
+      "bytes": 16558,
+      "sha256": "d6c8fd92a689f6e1c6af2ca2189153aaca119cdc34d3415bd4c83cf0a832e3dd"
     }
   ]
 }

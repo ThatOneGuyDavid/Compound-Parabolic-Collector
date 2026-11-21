@@ -5,7 +5,7 @@ import json
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'models'/'v15'
+OUT=ROOT/'models'/'v16'
 errors=[]
 checks=[]
 with sync_playwright() as p:
@@ -104,6 +104,9 @@ with sync_playwright() as p:
     assert page.evaluate('config.slats.slat_quantity')==40
     assert page.evaluate('config.slats.unique_slat_designs')==1
     assert abs(page.evaluate('config.reflector_arc_per_side_mm')-304.8)<1e-9
+    assert abs(page.evaluate('config.cradle_reflector_radius_mm')-6)<1e-9
+    assert abs(page.evaluate('config.acceptance_half_angle_deg')-27.4672909353)<1e-8
+    assert 'Reflector arc: 12″ from R6 tangent to top' in page.locator('#dimensions').inner_text()
     for link in page.locator('.downloads a').evaluate_all('(nodes)=>nodes.map(n=>n.getAttribute("href"))'):
         assert (ROOT/link).is_file(),link
     assert page.evaluate('config.slats.rib_back_envelope.rib_web_mm')==22
@@ -150,6 +153,7 @@ with sync_playwright() as p:
     page.screenshot(path=str(OUT/'aluminum-rib-section-preview.png'))
     page.get_by_role('button',name='Whole layout',exact=True).click()
     page.screenshot(path=str(OUT/'aluminum-backbone-preview.png'))
+    page.locator('#view').screenshot(path=str(OUT/'aluminum-backbone-model.png'))
     page.get_by_role('button',name='Printed · 12 mm',exact=True).click()
     assert page.evaluate('config.rib_thickness_mm')==12
     assert page.evaluate('parts.filter(p=>p.visible).length')==329

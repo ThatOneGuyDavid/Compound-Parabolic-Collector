@@ -64,7 +64,7 @@ function syncVariantUI(){
  for(const key of ['printed','aluminum'])document.getElementById(key).setAttribute('aria-pressed',String(key===currentVariant));
  document.getElementById('variant-description').textContent=currentVariant==='aluminum'?'CNC aluminum · fixed ⅛″ (3.175 mm) plate':'Printed prototype · fixed 12 mm halves';
  const f=(v,n=2)=>Number(v).toFixed(n);
- document.getElementById('dimensions').innerHTML=`Rib span: ${f(config.backbone_length_mm/25.4)}″ / ${f(config.backbone_length_mm)} mm<br>Rib half: ${f(config.rib_thickness_mm,3)} mm · pair: ${f(config.pair_thickness_mm,3)} mm<br>Station pitch: ${f(config.station_pitch_mm,3)} mm<br>Pipe extension: ${f(config.pipe_overhang_each_mm/25.4)}″ each end<br>Reflector arc: 12″ per side · acceptance ±28.63°<br>Curved arm: 22 mm · cradle wall: 8 mm`;
+ document.getElementById('dimensions').innerHTML=`Rib span: ${f(config.backbone_length_mm/25.4)}″ / ${f(config.backbone_length_mm)} mm<br>Rib half: ${f(config.rib_thickness_mm,3)} mm · pair: ${f(config.pair_thickness_mm,3)} mm<br>Station pitch: ${f(config.station_pitch_mm,3)} mm<br>Pipe extension: ${f(config.pipe_overhang_each_mm/25.4)}″ each end<br>Reflector arc: 12″ from R6 tangent to top, per side<br>CPC base half-angle: ±${f(config.acceptance_half_angle_deg,2)}° · curved arm: 22 mm · cradle wall: 8 mm`;
  const ribName=currentVariant==='aluminum'?'⅛″ CNC aluminum rib halves':'12 mm printed rib halves';
  document.getElementById('assembly-parts').innerHTML=`<ul class="parts-list">
  <li><strong>Receiver</strong><ul><li>1 × 72″ receiver pipe, 33.401 mm OD</li></ul></li>

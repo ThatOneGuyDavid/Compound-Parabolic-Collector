@@ -200,7 +200,7 @@ def seat_polygon():
 
 def back_envelope_report():
     material=seat_polygon()
-    back=LineString([point for segment in p.segments[6:10] for point in p.segment_points(segment,240)])
+    back=LineString([point for segment in p.segments[7:11] for point in p.segment_points(segment,240)])
     records=[]
     for row in LAYOUT:
         footprint=Polygon([xy(row,u,v) for u,v in [(-WIDTH/2,0),(WIDTH/2,0),(WIDTH/2,TAB_DEPTH),(-WIDTH/2,TAB_DEPTH)]])

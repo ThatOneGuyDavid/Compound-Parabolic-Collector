@@ -7,7 +7,7 @@ from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 from profile_geometry import (
-    R, ANGLE, CRADLE, CRADLE_WALL, COLLAR, WEB, END, JOIN,
+    R, ANGLE, CRADLE, CRADLE_WALL, COLLAR, WEB, END, JOIN, REFLECTOR_START,
     point, curve, edge, lower, back, inner, outer, outline, kept,
     PAD_HALF, PAD_BOTTOM, HOLE_Y, HOLES, HOLE_RADIUS, width, height,
 )
@@ -23,7 +23,7 @@ def cross(a,b):
     return a[0]*b[1]-a[1]*b[0]
 
 SOURCE=(0.0,point(END)[1]+5)  # Fixed source shown at the start of the user's red line.
-optical=curve(0,END,6000)
+optical=curve(REFLECTOR_START,END,6000)
 walls=[]
 for sign in (-1,1):
     for p,q in zip(optical,optical[1:]):
@@ -81,7 +81,7 @@ def single_bounce(degrees):
 
 # Start with the lower reflection indicated by the red sketch, then spread
 # five rays evenly to a near-top trace inside the current acceptance range.
-RED_REFLECTION=point(1.8)
+RED_REFLECTION=point(2.3)
 LOW_RAY_ANGLE=math.degrees(math.atan2(RED_REFLECTION[0],SOURCE[1]-RED_REFLECTION[1]))
 HIGH_RAY_ANGLE=math.degrees(ANGLE)-1.0
 RAY_ANGLES=[LOW_RAY_ANGLE+(HIGH_RAY_ANGLE-LOW_RAY_ANGLE)*i/4 for i in range(5)]
@@ -172,7 +172,7 @@ for i,(degrees,color,path) in enumerate(zip(RAY_ANGLES,RAY_COLORS,RAYS)):
     y=402+12*i
     line([(475,y-1.5),(487,y-1.5)],color,1)
     text(492,y,f'Ray {i+1}: {degrees:.2f} deg / one reflection',4.8)
-text(22,475,'Concept 24 - 12 inch reflector arc per side, cradle intersection to rib tip. Dimensions in mm.',4.5)
+text(22,475,'Concept 25 - 12 inch reflector arc per side, R6 tangent B to rib tip. Dimensions in mm.',4.5)
 items.append('</g></svg>')
 (ROOT/'rib.svg').write_text('\n'.join(items)+'\n')
 subprocess.run(['rsvg-convert','--width=1900','--output',str(ROOT/'rib.png'),str(ROOT/'rib.svg')],check=True)

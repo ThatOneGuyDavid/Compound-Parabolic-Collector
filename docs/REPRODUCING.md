@@ -18,10 +18,10 @@ drawings additionally need `rsvg-convert`:
 
 ```sh
 .venv/bin/python src/draw_rib.py
-.venv/bin/python sketches/draw_slats_03.py
+.venv/bin/python sketches/draw_slats_04.py
 ```
 
-The generators overwrite files under `models/v15/` and the root viewer/drawing.
+The generators overwrite files under `models/v16/` and the root viewer/drawing.
 Save any changes before regenerating. All CAD units are millimeters; GLB uses
 meters. STL has no intrinsic unit metadata and should be imported as mm.
 

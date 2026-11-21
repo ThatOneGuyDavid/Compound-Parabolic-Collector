@@ -1,0 +1,28 @@
+{
+  "printed": {
+    "outside_tip_radius_mm": 2.0,
+    "cradle_reflector_radius_mm": 6.0,
+    "units": "mm",
+    "closed_contours": 9,
+    "holes": 8,
+    "structural_hole_diameter_mm": 7.14375,
+    "slat_hole_diameter_mm": 4.7625,
+    "area_error_mm2": 0.010679530543711735,
+    "sampled_boundary_error_mm": 0.0005728339660636887,
+    "method": "Mid-thickness STEP section, translated to XY; DXF round-trip, 33 boundary samples per edge in both directions",
+    "cnc_notes": "Nominal finished outline; no kerf/tool compensation or face edge-roundover machining instructions"
+  },
+  "aluminum": {
+    "outside_tip_radius_mm": 2.0,
+    "cradle_reflector_radius_mm": 6.0,
+    "units": "mm",
+    "closed_contours": 9,
+    "holes": 8,
+    "structural_hole_diameter_mm": 7.14375,
+    "slat_hole_diameter_mm": 4.7625,
+    "area_error_mm2": 0.010679530536435777,
+    "sampled_boundary_error_mm": 0.0005728339660636887,
+    "method": "Mid-thickness STEP section, translated to XY; DXF round-trip, 33 boundary samples per edge in both directions",
+    "cnc_notes": "Nominal finished outline; no kerf/tool compensation or face edge-roundover machining instructions"
+  }
+}

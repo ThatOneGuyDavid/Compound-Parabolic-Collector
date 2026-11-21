@@ -6,7 +6,7 @@ import ezdxf
 from build123d import Compound, ExportDXF, Face, Plane, Vertex, Wire, import_dxf, import_step, section
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / 'models/v15'
+OUT = ROOT / 'models/v16'
 reports = {}
 for variant in ('printed', 'aluminum'):
     folder = OUT / variant
@@ -25,6 +25,7 @@ for variant in ('printed', 'aluminum'):
     assert not document.audit().errors
     assert len(document.modelspace().query('CIRCLE')) == 8
     assert any(abs(e.dxf.radius-2.0)<1e-6 for e in document.modelspace().query('ARC'))
+    assert any(abs(e.dxf.radius-6.0)<1e-6 for e in document.modelspace().query('ARC'))
     edges = import_dxf(target)
     wires = sorted(Wire.combine(edges), key=lambda w: w.length, reverse=True)
     assert len(wires) == 9 and all(w.is_closed for w in wires)
@@ -43,7 +44,7 @@ for variant in ('printed', 'aluminum'):
     circles = sorted(entity.dxf.radius for entity in document.modelspace().query('CIRCLE'))
     expected = sorted([7.14375 / 2] * 3 + [4.7625 / 2] * 5)
     assert all(abs(a - b) < 1e-7 for a, b in zip(circles, expected))
-    reports[variant] = dict(outside_tip_radius_mm=2.0,units='mm', closed_contours=9, holes=8,
+    reports[variant] = dict(outside_tip_radius_mm=2.0,cradle_reflector_radius_mm=6.0,units='mm', closed_contours=9, holes=8,
         structural_hole_diameter_mm=7.14375, slat_hole_diameter_mm=4.7625,
         area_error_mm2=area_error, sampled_boundary_error_mm=error,
         method='Mid-thickness STEP section, translated to XY; DXF round-trip, 33 boundary samples per edge in both directions',

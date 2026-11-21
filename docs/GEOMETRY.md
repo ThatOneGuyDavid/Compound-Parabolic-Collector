@@ -1,4 +1,4 @@
-# Geometry and calculations — v15
+# Geometry and calculations — v16
 
 All dimensions below are millimeters unless marked otherwise. Angles in the
 equations are radians. Source code: [profile_geometry.py](../src/profile_geometry.py),
@@ -32,43 +32,51 @@ measurements of this backbone.
 ## Solving the 12-inch arc constraint
 
 The cradle bore radius is `r + 0.5 = 17.2005`. Its 8 mm wall gives an outer
-collar radius `Rc = 25.2005`. The reflector intersects that outer collar at:
+collar radius `Rc = 25.2005`. The previous sharp intersection was at:
 
 ```text
-tA = sqrt((Rc/r)^2 - 1) = 1.1300357497
+tJ = sqrt((Rc/r)^2 - 1) = 1.1300357497
+tB = 1.9373426922  (R6-to-reflector tangent)
 t0 = pi/2 + a
-tB = 3*pi/2 - a
+tTop = 3*pi/2 - a
 ```
 
-The specified 12″ / 304.8 mm arc is measured from A at `tA` to the tip B at
-`tB`. It excludes the ideal lower reflector between the receiver cusp and A.
-For the involute, speed is `r*t`; for the upper branch it is
+The former sharp junction is replaced by a circular R6 mm fillet tangent to
+the outer cradle at `A = (20.2218, -15.0381)` and the ideal reflector at
+`B = (27.1868, -24.2199)`. Its center is `(25.0364, -18.6185)`.
+The fillet has a 147.6° sweep. Both tangent points are on the open machining
+side; the pipe bore and nominal 8 mm cradle wall are preserved.
+
+The specified 12″ / 304.8 mm usable reflector arc is measured **from B to the
+new top edge** along the reflective curve. The R6 blend and cradle are excluded.
+For the lower involute, speed is `r*t`; for the upper branch it is
 `rho(t)*sqrt(2/(1+sin(t-a)))`. Thus:
 
 ```text
-S(a) = r/2 * (t0^2 - tA^2)
-       + integral[t0..tB] rho(t)*sqrt(2/(1+sin(t-a))) dt
+S(a) = r/2 * (t0^2 - tB^2)
+       + integral[t0..tTop] rho(t)*sqrt(2/(1+sin(t-a))) dt
 
 Solve S(a) = 304.8 mm
 ```
 
 The generator uses 2,000-interval Simpson integration for the upper branch
 and 44 bisection iterations over 5°–85°. The solution is
-`a = 28.6297600599°`, so the nominal total transverse acceptance is about
-57.25952°. An independent 100,000-segment length calculation checks the arc
+`a = 27.4672909353°`, so the CPC base parameter has a nominal total angle of
+54.93458°. An independent 100,000-segment length calculation checks the arc
 against 304.8 mm to within 0.001 mm.
 
-At this solution, A is approximately `(7.0530, -24.1934)` and B is
-`(109.4989, 235.4418)`. The ideal opening width is `2*x(B) = 218.9978 mm`.
-The 12″ value is neither this width nor the straight A–B distance.
+The natural top endpoint is `(113.7497, 255.0237)` with a vertical tangent.
+The ideal opening width is `227.4994 mm`. Before the redesign, B to the v15
+top was 284.122 mm; the lower 20.678 mm of the old nominal arc is replaced by
+the R6 transition. The 12″ value is neither opening width nor a straight span.
 
-![Arc measurement definition](../sketches/reflector-arc-02.png)
+![Arc measurement definition](../sketches/reflector-arc-from-radius-sketch.png)
 
 ## Ray-trace method and limits
 
-The [current drawing](../rib.png) uses the complete ideal optical skin from
-`t=0` through `tB`, sampled with 6,000 segments per side. The source is fixed
-at `(0, y(B)+5)`. Five directions are chosen between the low reference ray
+The [current drawing](../rib.png) uses the ideal reflective skin from `tB`
+through `tTop`, sampled with 6,000 segments per side. The source is fixed
+at `(0, y(tTop)+5)`. Five directions are chosen between the low reference ray
 and `a-1°`. Each ray must hit the right reflector before the receiver, reflect
 once, then hit the receiver before any second wall intersection.
 
@@ -88,9 +96,8 @@ coordinates, input angles and checks are in [ray-trace.json](ray-trace.json).
 
 This finite-source fan is an illustrative diagnostic, not sunlight from five
 simultaneous solar positions. It does not prove full-aperture acceptance or
-collector efficiency. The lower ideal reflector around the receiver is part
-of the trace, while the rib/cradle are projected mechanical outlines. Material
-selection and construction of that lower reflector remain open. Mechanical
+collector efficiency. The R6 blend and cradle are excluded from the reflective
+trace; the rib/cradle are projected mechanical outlines. Mechanical
 shadows, imperfect reflectance, end losses and heat transfer are excluded.
 Historical ray tests on earlier profiles are not claimed as validation of
 the current acceptance range.
@@ -99,11 +106,11 @@ the current acceptance range.
 
 Each section contains two identical halves in adjacent axial intervals:
 `[z, z+h]` and `[z+h, z+2h]`. The left half is the same part rotated into
-place. The outside top corner has a 2 mm in-plane radius, included in the CNC DXF.
-It rounds the junction of the top edge and outer back while retaining the
-reflector curve and top slat seat. The curved rib web is 22 mm; nominal outer edge rounding is 0.8 mm.
+place. The outside top corner retains a 2 mm in-plane radius, and the lower
+cradle junction has a 6 mm in-plane radius. Both are in the CNC DXF. The curved
+rib web is 22 mm; nominal outer edge rounding is 0.8 mm.
 The slat bend/tail projections fit within the rib with a conservative minimum
-back margin of approximately 0.150 mm at the rounded top corner and at least 1.961 mm
+back margin of approximately 0.150 mm at the rounded top corner and at least 1.858 mm
 at the other rows after accounting for that rounding.
 
 Each half has three 9/32″ / 7.14375 mm structural holes at
@@ -115,8 +122,8 @@ directions are listed in each option's `slats.json`.
 The master slat is 19.05 mm wide and 1.5875 mm thick, with 1.5875 mm inner
 bend radii, 19.05 mm tab depth and rounded 90° end bends. Hole centers lie
 11.5 mm down the tabs. The formed axial span is 363 mm. The bottom support
-is located 45 mm along the reflector arc from A; upper stations follow the
-remaining interval, with the top support edge ending at B. All forty slats
+is located 45 mm along the reflector arc from B; upper stations follow the
+remaining interval, with the top support edge ending at the new tip. All forty slats
 are rigid placements of one master; there are no row-specific slat designs.
 The flat blank length requires a bend allowance and a physical sample.
 

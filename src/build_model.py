@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 parser=argparse.ArgumentParser(description='Build one fixed rib material variant')
 parser.add_argument('--variant',choices=('printed','aluminum'),default='printed')
 VARIANT=parser.parse_args().variant
-OUT=ROOT/'models'/'v15'/VARIANT
+OUT=ROOT/'models'/'v16'/VARIANT
 OUT.mkdir(parents=True,exist_ok=True)
 STATIONS=5
 THICKNESS=12.0 if VARIANT=='printed' else 3.175
@@ -88,7 +88,7 @@ face=profile_face()
 base=Solid.extrude(face,(0,0,THICKNESS))
 # Round only nonfunctional front/back perimeter edges. Pipe bore, bolt
 # holes and the reflective support curves keep their nominal geometry.
-cosmetic_segments=[p.segments[i] for i in [6,7,8,9,10,11]]
+cosmetic_segments=[p.segments[i] for i in [7,8,9,10,11,12]]
 guide=np.array([q for segment in cosmetic_segments for q in p.segment_points(segment,400)])
 round_edges=[]
 for e in base.edges():
@@ -231,13 +231,16 @@ hardware_report['clearance_method']='Axial slices against unfilleted rib materia
 (OUT/'hardware.json').write_text(json.dumps(hardware_report,indent=2)+'\n')
 (OUT/'slats.json').write_text(json.dumps(slat_report,indent=2)+'\n')
 report=dict(
-    revision='model-v15',variant=VARIANT,material='Printed prototype' if VARIANT=='printed' else 'CNC aluminum, fixed 1/8 inch plate',units='mm',glb_units='m',rib_stations=STATIONS,identical_half_quantity=2*STATIONS,
+    revision='model-v16',variant=VARIANT,material='Printed prototype' if VARIANT=='printed' else 'CNC aluminum, fixed 1/8 inch plate',units='mm',glb_units='m',rib_stations=STATIONS,identical_half_quantity=2*STATIONS,
     backbone_length_mm=LENGTH,pipe_length_mm=LENGTH+2*OVERHANG,pipe_overhang_each_mm=OVERHANG,
     station_starts_mm=[i*PITCH for i in range(STATIONS)],station_pitch_mm=PITCH,
     rib_thickness_mm=THICKNESS,pair_thickness_mm=PAIR_THICKNESS,half_offset_mm=THICKNESS,
     station_half_intervals_mm=[[[i*PITCH,i*PITCH+THICKNESS],
                                 [i*PITCH+THICKNESS,i*PITCH+PAIR_THICKNESS]] for i in range(STATIONS)],
-    reflector_arc_per_side_mm=p.REFLECTOR_ARC_MM,acceptance_half_angle_deg=math.degrees(p.ANGLE),
+    reflector_arc_per_side_mm=p.REFLECTOR_ARC_MM,reflector_arc_start='R6 fillet tangency B on reflector',
+    reflector_arc_start_mm=p.FILLET_REFLECTOR_TANGENCY,previous_B_to_top_arc_mm=p.ARC_TO_OLD_TOP_MM,
+    removed_lower_arc_mm=p.REMOVED_LOWER_ARC_MM,
+    cradle_reflector_radius_mm=p.CRADLE_FILLET_RADIUS,acceptance_half_angle_deg=math.degrees(p.ANGLE),
     pipe_od_mm=2*p.R,pipe_id_mm=2*PIPE_INNER_RADIUS,cradle_bore_mm=2*p.CRADLE,
     cradle_wall_mm=p.CRADLE_WALL,part_bounds_mm=list(stl.extents),
     mounting_hole_diameter_mm=2*p.HOLE_RADIUS,mounting_hole_spacing_mm=30,

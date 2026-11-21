@@ -5,7 +5,7 @@ import base64,hashlib,json
 import numpy as np
 import trimesh as tm
 ROOT=Path(__file__).resolve().parent.parent
-OUT=ROOT/'models'/'v15'
+OUT=ROOT/'models'/'v16'
 assets={};variants={};configs={}
 for variant in ('printed','aluminum'):
     folder=OUT/variant

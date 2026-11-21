@@ -1,0 +1,57 @@
+{
+  "checks": [
+    "Selected rib bolts and slat screws pass through full modeled washer/nut stacks with at least two threads exposed at every station",
+    "Independently sampled R6-tangency-to-tip reflector arc is 304.8 mm per side; receiver OD retained",
+    "All five bend/tail projected envelopes fit within the rib; rounded tip keeps the top tail enclosed; other rows retain at least 1.8 mm margin",
+    "Slat/tab envelopes and attachment washers clear the spacer fender washers and existing pair fasteners",
+    "All five slat-hole disks fit the flattened rib with 0.2 mm extra radial allowance; washers clear bend envelopes",
+    "The one master slat retains the previous version geometry; only its rib envelope changes",
+    "Delivered formed-slat STEP is one valid solid; STL is watertight with two tab holes",
+    "Delivered support face is on the tangent seat plane; material lies below it by exactly the modeled gauge",
+    "Native formed slat clears bolt, nut and both washers at both end joints",
+    "Delivered bay contains rigid placements of one master design, five slats per side, correct row offset for the selected plate thickness, and no slat above the rib tip"
+  ],
+  "rib_back_envelope": {
+    "rib_web_mm": 22.0,
+    "slat_tail_depth_mm": 19.05,
+    "rows": [
+      {
+        "row": 1,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.6580453150131365,
+        "minimum_after_edge_roundover_mm": 1.8580453150131364
+      },
+      {
+        "row": 2,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.800957843499253,
+        "minimum_after_edge_roundover_mm": 2.000957843499253
+      },
+      {
+        "row": 3,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.8649854834327013,
+        "minimum_after_edge_roundover_mm": 2.064985483432701
+      },
+      {
+        "row": 4,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 2.8944689337576595,
+        "minimum_after_edge_roundover_mm": 2.0944689337576596
+      },
+      {
+        "row": 5,
+        "footprint_outside_rib_mm2": 0.0,
+        "tail_to_back_curve_mm": 0.9499840140568153,
+        "minimum_after_edge_roundover_mm": 0.14998401405681527
+      }
+    ],
+    "minimum_proud_mm": 0.14998401405681527,
+    "method": "Entire slat/bend/tail projected footprint contained in seated rib; tail-to-smooth-back distance minus edge radius"
+  },
+  "support_face_levels_mm": [
+    0.0,
+    1.587499999999999
+  ],
+  "provisional": "3/4 x 1/16 inch aluminum strip; dimensions for review, not final fabrication"
+}

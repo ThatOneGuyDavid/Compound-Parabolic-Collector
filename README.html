@@ -22,7 +22,7 @@ exploring a repeatable rib-and-slat structure around a tubular receiver.
 The CAD, dimensions, hardware choices and calculations presented here document
 this project's implementation. Credit does not imply his review or endorsement.</p>
 <h2>Current design</h2>
-<p><strong>v15 is a CAD design draft.</strong> The geometry and exported models have been
+<p><strong>v16 is a CAD design draft.</strong> The geometry and exported models have been
 checked; the assembly has not yet been physically built or tested. The printed
 option is for fit prototyping. Aluminum is the intended later rib material.
 Reflector material and attachment, receiver retention and external supports
@@ -35,20 +35,27 @@ remain to be designed.</p>
 <li>Four bays, each carrying five support slats on each side: forty copies of
   one formed slat design.</li>
 <li>A 72″ receiver pipe, two 61″ all-thread rods and eight PVC spacer tubes.</li>
-<li>A 12″ reflector arc on each side, measured along the curve from the cradle
-  intersection to the rib tip. This is a curved length, not the opening width.</li>
-<li>A nominal transverse acceptance half-angle of ±28.62976°, calculated from
+<li>A 12″ reflector arc on each side, measured along the curve from the R6 cradle fillet’s reflector tangent B to the top edge. The R6
+  transition itself is excluded; this is a curved length, not opening width.</li>
+<li>A nominal transverse acceptance half-angle of ±27.467291°, calculated from
   the chosen receiver and reflector arc.</li>
 </ul>
-<h3>v15 update: rounded outer rib tips</h3>
-<p>The outer top corner now has a 2 mm radius to remove the sharp plan-view
-point, especially for the CNC aluminum ribs. Both material options use the
-same revised outline, including the DXF cutting files. The top slat tab still
-fits inside the rib; the reflector curve, hole locations and master slat are
-unchanged. Plate edges still need normal deburring during fabrication.</p>
-<p>CAD, mesh, slat-clearance, DXF round-trip and browser checks pass. The main
-image now shows only the model and links to the interactive online viewer.</p>
-<p><a href="images/tip-radius-detail.png">View the R2 outer-tip detail</a>.</p>
+<h3>v16 update: machinable cradle junction and retained 12-inch arc</h3>
+<p>The bottom of the pipe holder now joins the reflector through a true <strong>R6 mm
+in-plane tangent arc</strong> on each rib side. The 12-inch usable reflector length is
+measured <strong>from tangent point B on the reflective curve to its top edge</strong>.
+The R6 blend and pipe cradle are excluded. Re-solving the CPC profile for this
+span gives a base half-angle of ±27.467291° and retains a vertical tangent at
+the top slat. The previously published B-to-top span was 284.122 mm.</p>
+<p>The earlier R2 outer top corner remains. The 34.401 mm pipe bore, 8 mm cradle
+wall, one identical slat design and structural hardware retain their nominal
+dimensions. Slat seats follow the revised curve. Both material options have
+new STEP, STL, GLB and nominal DXF exports. The CNC DXF contains the R6 and
+R2 arcs; tool compensation and fabrication setup remain shop decisions.</p>
+<p>CAD, mesh, slat-clearance, DXF round-trip and browser checks pass. The
+<a href="sketches/reflector-arc-from-radius-sketch.png">measurement sketch</a> marks the
+new B-to-top dimension, and the <a href="sketches/cradle-reflector-radius-sketch.png">junction sketch</a>
+shows the R6 transition. Plate edges still need normal deburring.</p>
 <h2>Printed and aluminum build options</h2>
 <table>
 <thead>
@@ -98,9 +105,8 @@ image now shows only the model and links to the interactive online viewer.</p>
 </table>
 <p>The slats and PVC spacers keep the same length in both options. Thinner ribs
 therefore shorten the aluminum assembly and leave more of the centered pipe
-and rods exposed. Both options use the same transverse rib profile, with a 2 mm radius on the
-outer top corner to remove the sharp tip. The
-current half fits within an approximately 162.5 × 297.4 mm footprint.</p>
+and rods exposed. Both options use the same transverse rib profile, with an R6 cradle transition and R2 outer top corner. The
+current half fits within an approximately 166.7 × 317.0 mm footprint.</p>
 <h2>Interactive 3D preview</h2>
 <p><strong><a href="https://thatoneguydavid.github.io/Compound-Parabolic-Collector/assembly-viewer.html">Open the interactive 3D viewer online</a></strong></p>
 <p>The online viewer runs in a WebGL-capable browser with no download required.
@@ -130,13 +136,15 @@ efficiency result. The ray model excludes mechanical shading, finite-length
 end losses, surface errors and thermal behavior.</p>
 <h2>Latest sketches and drawings</h2>
 <ul>
-<li><a href="sketches/reflector-arc-02.png">12″ cradle-to-tip arc definition</a>
-  (<a href="sketches/reflector-arc-02.svg">SVG</a>).</li>
-<li><a href="sketches/reflector-slats-03.png">Current reflector-support drawing 03</a>
-  (<a href="sketches/reflector-slats-03.svg">SVG</a>), generated from the v15 slat geometry.</li>
+<li><a href="sketches/reflector-arc-from-radius-sketch.png">12″ B-to-top arc definition</a>
+  (<a href="sketches/reflector-arc-from-radius-sketch.svg">SVG</a>).</li>
+<li><a href="sketches/cradle-reflector-radius-sketch.png">R6 cradle junction</a>
+  (<a href="sketches/cradle-reflector-radius-sketch.svg">SVG</a>).</li>
+<li><a href="sketches/reflector-slats-04.png">Current reflector-support drawing 04</a>
+  (<a href="sketches/reflector-slats-04.svg">SVG</a>), generated from the v16 slat geometry.</li>
 <li><a href="sketches/reflector-slats-02.png">Earlier reflector-support concept, sketch 02</a>
   (<a href="sketches/reflector-slats-02.svg">SVG</a>). This sketch records the support
-  arrangement before the final 12″ arc revision; use the v15 CAD and current
+  arrangement before the new R6 radius; use the v16 CAD and current
   arc drawing for final geometry.</li>
 <li><a href="images/aluminum-slat-bay-preview.png">Aluminum slat-bay rendering</a> and
   <a href="images/printed-slat-bay-preview.png">printed slat-bay rendering</a>.</li>
@@ -259,38 +267,38 @@ to be selected. This BOM does not yet define a complete operational collector.</
 <tbody>
 <tr>
 <td>Rib-half STL</td>
-<td><a href="models/v15/printed/rib-half.stl">STL</a></td>
-<td><a href="models/v15/aluminum/rib-half.stl">STL</a></td>
+<td><a href="models/v16/printed/rib-half.stl">STL</a></td>
+<td><a href="models/v16/aluminum/rib-half.stl">STL</a></td>
 </tr>
 <tr>
 <td>Rib-half nominal cutting profile</td>
-<td><a href="models/v15/printed/rib-half.dxf">DXF</a></td>
-<td><a href="models/v15/aluminum/rib-half.dxf">DXF</a></td>
+<td><a href="models/v16/printed/rib-half.dxf">DXF</a></td>
+<td><a href="models/v16/aluminum/rib-half.dxf">DXF</a></td>
 </tr>
 <tr>
 <td>Rib-half editable CAD</td>
-<td><a href="models/v15/printed/rib-half.step">STEP</a></td>
-<td><a href="models/v15/aluminum/rib-half.step">STEP</a></td>
+<td><a href="models/v16/printed/rib-half.step">STEP</a></td>
+<td><a href="models/v16/aluminum/rib-half.step">STEP</a></td>
 </tr>
 <tr>
 <td>Bolted rib section</td>
-<td><a href="models/v15/printed/rib-section.step">STEP</a></td>
-<td><a href="models/v15/aluminum/rib-section.step">STEP</a></td>
+<td><a href="models/v16/printed/rib-section.step">STEP</a></td>
+<td><a href="models/v16/aluminum/rib-section.step">STEP</a></td>
 </tr>
 <tr>
 <td>Single master slat</td>
-<td><a href="models/v15/printed/reflector-slat.step">STEP</a> / <a href="models/v15/printed/reflector-slat.stl">STL</a></td>
-<td><a href="models/v15/aluminum/reflector-slat.step">STEP</a> / <a href="models/v15/aluminum/reflector-slat.stl">STL</a></td>
+<td><a href="models/v16/printed/reflector-slat.step">STEP</a> / <a href="models/v16/printed/reflector-slat.stl">STL</a></td>
+<td><a href="models/v16/aluminum/reflector-slat.step">STEP</a> / <a href="models/v16/aluminum/reflector-slat.stl">STL</a></td>
 </tr>
 <tr>
 <td>Ten-slat bay</td>
-<td><a href="models/v15/printed/slat-bay.step">STEP</a></td>
-<td><a href="models/v15/aluminum/slat-bay.step">STEP</a></td>
+<td><a href="models/v16/printed/slat-bay.step">STEP</a></td>
+<td><a href="models/v16/aluminum/slat-bay.step">STEP</a></td>
 </tr>
 <tr>
 <td>Complete backbone</td>
-<td><a href="models/v15/printed/backbone.step">STEP</a> / <a href="models/v15/printed/backbone.glb">GLB</a></td>
-<td><a href="models/v15/aluminum/backbone.step">STEP</a> / <a href="models/v15/aluminum/backbone.glb">GLB</a></td>
+<td><a href="models/v16/printed/backbone.step">STEP</a> / <a href="models/v16/printed/backbone.glb">GLB</a></td>
+<td><a href="models/v16/aluminum/backbone.step">STEP</a> / <a href="models/v16/aluminum/backbone.glb">GLB</a></td>
 </tr>
 </tbody>
 </table>
@@ -302,12 +310,12 @@ confirm CAM support. Tool/kerf compensation and edge finishing are not included.
 <h2>Source and validation</h2>
 <p><a href="docs/REPRODUCING.html">Reproduction instructions</a> describe the Python generators
 and checks included here. The design uses build123d for CAD and a self-contained
-WebGL viewer. Current reports accompany the models under <code>models/v15/</code>:</p>
+WebGL viewer. Current reports accompany the models under <code>models/v16/</code>:</p>
 <ul>
 <li>Per-option CAD/mesh, hardware and independent slat/joint validation reports.</li>
-<li><a href="models/v15/export-validation.json">Export checks</a>.</li>
-<li><a href="models/v15/dxf-validation.json">DXF round-trip checks</a>.</li>
-<li><a href="models/v15/viewer-validation.json">Browser checks</a>.</li>
+<li><a href="models/v16/export-validation.json">Export checks</a>.</li>
+<li><a href="models/v16/dxf-validation.json">DXF round-trip checks</a>.</li>
+<li><a href="models/v16/viewer-validation.json">Browser checks</a>.</li>
 </ul>
 <p>These checks establish modeled dimensions, geometry and viewer behavior.
 Physical fit, forming accuracy, thermal behavior and structural performance
